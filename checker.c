@@ -13,14 +13,15 @@
 #include "./libft/libft/includes/libft.h"
 #include "./libft/printf/includes/ft_printf.h"
 
-static int		ft_double(int *tab, int end)
+static int		ft_double(int *tab, int end, int ac)
 {
 	int	i;
 
-	i = 0;
-	while (i < end)
+	i = ac;
+	i++;
+	while (i < (end + ac))
 	{
-		if (tab[i] == tab[end])
+		if (tab[i] == tab[ac])
 			return (0);
 		i++;
 	}
@@ -34,9 +35,10 @@ static int		ft_parsing(int ac, char **av, int *tab)
 	int			j;
 
 	i = 1;
-	if (!(tmp = malloc(sizeof(*tmp) * ac)))
+	if (!(tmp = malloc(sizeof(*tmp) * ac - 1)))
 		return (0);
-	while (i < ac)
+	ac--;
+	while (av[i])
 	{	
 		j = 0;
 		if (av[i][j] == '-')
@@ -47,8 +49,8 @@ static int		ft_parsing(int ac, char **av, int *tab)
 		tmp[i] = ft_long_atoi(av[i]);
 		if (tmp[i] > 2147483647 || tmp[i] < -2147483648)
 			return (0);
-		tab[i - 1] = (int)tmp[i];
-		if (ft_double(tab, i) == 0)
+		tab[--ac] = (int)tmp[i];
+		if (ft_double(tab, i, ac) == 0)
 			return (0);
 		i++;
 	}
@@ -60,7 +62,7 @@ int		main(int argc, char **argv)
 {
 	int		*tab;
 
-	//check doublon et digit
+	//check doublon et digit remplie le tableau par le fin
 	if (!(tab = malloc(sizeof(int) * argc - 1)))
 		return (0);
 	if (ft_parsing(argc, argv, tab) == 0 || argc < 2)
@@ -71,7 +73,7 @@ int		main(int argc, char **argv)
 
 	//test
 	int i = 0;
-	while (i < argc)
+	while (i < argc - 1)
 	{
 		ft_printf("tab[%d] = %d\n", i, tab[i]);
 		i++;
