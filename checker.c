@@ -16,18 +16,12 @@
 int		ft_double(int *tab, int end)
 {
 	int	i;
-	int j;
 
 	i = 0;
 	while (i < end)
 	{
-		j = i + 1;
-		while (j < end)
-		{
-			if (tab[i] == tab[j])
-				return (0);
-			j++;
-		}
+		if (tab[i] == tab[end])
+			return (0);
 		i++;
 	}
 	return (1);
@@ -35,29 +29,21 @@ int		ft_double(int *tab, int end)
 
 int		ft_parsing(int ac, char **av, int *tab)
 {
-	long long	*tmp;
+	long long		*tmp;
 	int			i;
 	int			j;
 
-	i = 0;
-	j = 0;
+	i = 1;
 	if (!(tmp = malloc(sizeof(*tmp) * ac)))
 		return (0);
-	if (av[i][j] == '-')
-	{
-		if (ft_isdigit(av[i][j + 1]) == 1)
-			j++;
-		else
-			return (0);
-	}
 	while (i < ac)
-	{
-		while (av[i][j] != '\0')
-		{
-			if (ft_isdigit(av[i][j] == 0))
-				return (0);
+	{	
+		j = 0;
+		if (av[i][j] == '-')
 			j++;
-		}
+		while (av[i][j] != '\0')
+			if (ft_isdigit(av[i][j++]) == 0)
+				return (0);
 		tmp[i] = ft_long_atoi(av[i]);
 		if (tmp[i] > 2147483647 || tmp[i] < -2147483648)
 			return (0);
@@ -65,7 +51,6 @@ int		ft_parsing(int ac, char **av, int *tab)
 		if (ft_double(tab, i) == 0)
 			return (0);
 		i++;
-		j = 0;
 	}
 	free(tmp);
 	return (1);
