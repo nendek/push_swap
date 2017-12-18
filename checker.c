@@ -13,7 +13,7 @@
 #include "./libft/libft/includes/libft.h"
 #include "./libft/printf/includes/ft_printf.h"
 
-int		ft_double(int *tab, int end)
+static int		ft_double(int *tab, int end)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int		ft_double(int *tab, int end)
 	return (1);
 }
 
-int		ft_parsing(int ac, char **av, int *tab)
+static int		ft_parsing(int ac, char **av, int *tab)
 {
 	long long		*tmp;
 	int			i;
@@ -47,7 +47,7 @@ int		ft_parsing(int ac, char **av, int *tab)
 		tmp[i] = ft_long_atoi(av[i]);
 		if (tmp[i] > 2147483647 || tmp[i] < -2147483648)
 			return (0);
-		tab[i] = (int)tmp[i];
+		tab[i - 1] = (int)tmp[i];
 		if (ft_double(tab, i) == 0)
 			return (0);
 		i++;
@@ -61,7 +61,20 @@ int		main(int argc, char **argv)
 	int		*tab;
 
 	//check doublon et digit
-	tab = malloc(sizeof(*tab) * argc);
-	ft_printf("retour de parsing : %d", ft_parsing(argc, argv, tab));
+	if (!(tab = malloc(sizeof(int) * argc - 1)))
+		return (0);
+	if (ft_parsing(argc, argv, tab) == 0 || argc < 2)
+	{
+		ft_printf("ERROR\n");
+		return (0);
+	}
+
+	//test
+	int i = 0;
+	while (i < argc)
+	{
+		ft_printf("tab[%d] = %d\n", i, tab[i]);
+		i++;
+	}
 	return (0);
 }
