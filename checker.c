@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:09:46 by pnardozi          #+#    #+#             */
-/*   Updated: 2017/12/18 15:49:03 by pnardozi         ###   ########.fr       */
+/*   Updated: 2017/12/19 14:22:41 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ static int		ft_double(int *tab, int end, int ac)
 static int		ft_parsing_int(int ac, char **av, int *tab)
 {
 	long long		*tmp;
-	int			i;
-	int			j;
+	int				i;
+	int				j;
 
 	i = 1;
-	if (!(tmp = malloc(sizeof(*tmp) * ac - 1)))
+	if (!(tmp = malloc(sizeof(*tmp) * ac)))
 		return (0);
-	ac--;
 	while (av[i])
-	{	
+	{
 		j = 0;
 		if (av[i][j] == '-')
 			j++;
@@ -57,27 +56,21 @@ static int		ft_parsing_int(int ac, char **av, int *tab)
 	return (1);
 }
 
-
-
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	int	*tab_a;
 	int	*tab_b;
 
-	//check doublon et digit remplie le tableau par le fin
 	if (!(tab_a = malloc(sizeof(int) * (argc - 1) * 2)))
 		return (0);
 	if (!(tab_b = malloc(sizeof(int) * (argc - 1) * 2)))
 		return (0);
-	if (ft_parsing_int(argc, argv, tab_a) == 0 || argc < 2)
+	if (ft_parsing_int(argc - 1, argv, tab_a) == 0 || argc < 2)
 	{
 		ft_printf("Error\n");
 		return (0);
 	}
-	//lecture des commandes + parsing commande + application des commandes
 	if (ft_cmd(tab_a, tab_b, (argc - 2)) == 0)
 		ft_printf("Error\n");
-
-
-	return (0);
+	return (1);
 }

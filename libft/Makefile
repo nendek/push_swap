@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 17:28:03 by pnardozi          #+#    #+#              #
-#    Updated: 2017/12/18 13:08:43 by pnardozi         ###   ########.fr        #
+#    Updated: 2017/12/19 14:25:27 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ PRINTF_INCLUDES_PATH = ./printf/includes/
 PRINTF_OBJ_PATH = ./printf/obj/
 
 LIBFT_SRCS_NAME = ft_atoi.c \
+				  ft_is_sort.c \
 				  get_next_line_one_file.c \
 				  ft_eol.c \
 				  ft_is_in_pos.c \

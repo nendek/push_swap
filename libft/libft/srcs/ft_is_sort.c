@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd2.c                                             :+:      :+:    :+:   */
+/*   ft_is_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/19 14:15:41 by pnardozi          #+#    #+#             */
-/*   Updated: 2017/12/19 14:17:10 by pnardozi         ###   ########.fr       */
+/*   Created: 2017/12/19 14:23:44 by pnardozi          #+#    #+#             */
+/*   Updated: 2017/12/19 14:25:30 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "libft.h"
 
-void	ft_rrx(int *pile_x, int i_x)
+int		ft_is_sort(int *tab, int end)
 {
-	int cursor;
+	int	i;
 
-	cursor = 0;
-	if (i_x >= 1)
-		while (cursor != i_x)
-		{
-			ft_swap(&pile_x[cursor], &pile_x[cursor + 1]);
-			cursor++;
-		}
-}
-
-void	ft_rrr(int *pile_a, int *pile_b, t_index i)
-{
-	ft_rrx(pile_a, i.a);
-	ft_rrx(pile_b, i.b);
+	i = 0;
+	while (i < end)
+	{
+		if (tab[i] < tab[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }

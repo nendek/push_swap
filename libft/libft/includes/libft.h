@@ -6,7 +6,7 @@
 /*   By: pnardozi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:07:14 by pnardozi          #+#    #+#             */
-/*   Updated: 2017/12/17 15:00:13 by pnardozi         ###   ########.fr       */
+/*   Updated: 2017/12/19 14:24:53 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					ft_is_sort(int *tab, int end);
 int					ft_eol(char *str);
 int					ft_is_in_pos(char const *s, int c);
 char				*ft_itoc(int *str);
@@ -116,6 +117,7 @@ long				ft_nbdigit(long n);
 void				ft_sort_int_tab(int *tab, int size);
 void				ft_print_word_tab(char **tab);
 void				ft_swap(int *a, int *b);
-void				ft_push(int *pile_dst, int *pile_src, int *i_dst, int *i_src);
+void				ft_push(int *pile_dst, int *pile_src, int *i_dst,\
+		int *i_src);
 
 #endif
