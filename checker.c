@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft/includes/libft.h"
-#include "./libft/printf/includes/ft_printf.h"
+#include "checker.h"
 
 static int		ft_double(int *tab, int end, int ac)
 {
@@ -28,7 +27,7 @@ static int		ft_double(int *tab, int end, int ac)
 	return (1);
 }
 
-static int		ft_parsing(int ac, char **av, int *tab)
+static int		ft_parsing_int(int ac, char **av, int *tab)
 {
 	long long		*tmp;
 	int			i;
@@ -58,25 +57,27 @@ static int		ft_parsing(int ac, char **av, int *tab)
 	return (1);
 }
 
+
+
 int		main(int argc, char **argv)
 {
-	int		*tab;
+	int	*tab_a;
+	int	*tab_b;
 
 	//check doublon et digit remplie le tableau par le fin
-	if (!(tab = malloc(sizeof(int) * argc - 1)))
+	if (!(tab_a = malloc(sizeof(int) * (argc - 1) * 2)))
 		return (0);
-	if (ft_parsing(argc, argv, tab) == 0 || argc < 2)
+	if (!(tab_b = malloc(sizeof(int) * (argc - 1) * 2)))
+		return (0);
+	if (ft_parsing_int(argc, argv, tab_a) == 0 || argc < 2)
 	{
-		ft_printf("ERROR\n");
+		ft_printf("Error\n");
 		return (0);
 	}
+	//lecture des commandes + parsing commande + application des commandes
+	if (ft_cmd(tab_a, tab_b, (argc - 2)) == 0)
+		ft_printf("Error\n");
 
-	//test
-	int i = 0;
-	while (i < argc - 1)
-	{
-		ft_printf("tab[%d] = %d\n", i, tab[i]);
-		i++;
-	}
+
 	return (0);
 }

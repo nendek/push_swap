@@ -108,6 +108,8 @@ LIBFT_SRCS_NAME = ft_atoi.c \
 				  ft_strsub.c \
 				  ft_strtrim.c \
 				  ft_tolower.c \
+				  ft_swap.c \
+				  ft_push.c \
 				  ft_toupper.c 
 
 PRINTF_SRCS_NAME = 	ft_unicode.c \

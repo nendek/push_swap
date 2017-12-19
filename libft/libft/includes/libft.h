@@ -116,5 +116,6 @@ long				ft_nbdigit(long n);
 void				ft_sort_int_tab(int *tab, int size);
 void				ft_print_word_tab(char **tab);
 void				ft_swap(int *a, int *b);
+void				ft_push(int *pile_dst, int *pile_src, int *i_dst, int *i_src);
 
 #endif
