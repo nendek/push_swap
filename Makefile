@@ -68,9 +68,17 @@ $(CHECKER): $(CHECKER_OBJ)
 	$(CC) $(CFLAGS) -o $(CHECKER) $(CHECKER_OBJ) $(LIB)
 	@echo "$(GREEN)CHECKER READY$(END)"
 
+$(PUSH_SWAP): $(PUSH_SWAP_OBJ)
+	$(CC) $(CFLAGS) -o $(PUSH_SWAP) $(PUSH_SWAP_OBJ) $(LIB)
+	@echo "$(GREEN)PUSH_SWAP READY$(END)"
+
 $(CHECKER_OBJ_PATH)%.o: $(CHECKER_SRCS_PATH)%.c
-	mkdir -p $(CHECKER_OBJ_PATH)
+	@mkdir -p $(CHECKER_OBJ_PATH)
 	$(CC) -c $(CFLAGS) $(CHECKER_INC) $(LIBFT_INC) $(PRINTF_INC) -o $@ -c $<
+
+$(PUSH_SWAP_OBJ_PATH)%.o: $(PUSH_SWAP_SRCS_PATH)%.c
+	@mkdir -p $(PUSH_SWAP_OBJ_PATH)
+	$(CC) - c $(CFLAGS) $(PUSH_SWAP_INC) $(LIBFT_INC) $(PRINTF_INC) -o $@ -c $<
 
 clean:
 	make clean -C $(LIB_PATH)

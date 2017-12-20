@@ -72,5 +72,7 @@ int				main(int argc, char **argv)
 	}
 	if (ft_cmd(tab_a, tab_b, (argc - 2)) == 0)
 		ft_printf("Error\n");
+	free(tab_a);
+	free(tab_b);
 	return (1);
 }
