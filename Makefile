@@ -25,9 +25,9 @@ CHECKER_SRCS_PATH = ./check/srcs/
 CHECKER_INCLUDES_PATH = ./check/includes/
 CHECKER_OBJ_PATH = ./check/obj/
 
-PUSH_SWAP_SRCS_PATH = ./push_swap/srcs/
-PUSH_SWAP_INCLUDES_PATH = ./push_swap/includes/
-PUSH_SWAP_OBJ_PATH = ./push_swap/obj/
+PUSH_SWAP_SRCS_PATH = ./p_s/srcs/
+PUSH_SWAP_INCLUDES_PATH = ./p_s/includes/
+PUSH_SWAP_OBJ_PATH = ./p_s/obj/
 
 CHECKER_SRCS_NAME = checker.c \
 					cmd.c \
