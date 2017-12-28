@@ -32,9 +32,11 @@ PUSH_SWAP_OBJ_PATH = ./p_s/obj/
 CHECKER_SRCS_NAME = checker.c \
 					cmd.c \
 					cmd2.c \
+					parsing.c \
 					select_cmd.c
 
-PUSH_SWAP_SRCS_NAME = 
+PUSH_SWAP_SRCS_NAME =	push_swap.c \
+			parsing.c
 
 CHECKER_OBJ_NAME = $(CHECKER_SRCS_NAME:.c=.o)
 
@@ -48,7 +50,7 @@ CHECKER_OBJ = $(addprefix $(CHECKER_OBJ_PATH),$(CHECKER_OBJ_NAME))
 CHECKER_INC = $(addprefix -I,$(CHECKER_INCLUDES_PATH))
 
 PUSH_SWAP_SRCS = $(addprefix $(PUSH_SWAP_SRCS_PATH),$(PUSH_SWAP_SRCS_NAME))
-PUSH_SWAP_OBJ = $(addprefix $(PUSH_SWAP_OBJ_PATH),$(PUSH_SWAP_SRCS_NAME))
+PUSH_SWAP_OBJ = $(addprefix $(PUSH_SWAP_OBJ_PATH),$(PUSH_SWAP_OBJ_NAME))
 PUSH_SWAP_INC = $(addprefix -I,$(PUSH_SWAP_INCLUDES_PATH))
 
 LIB_PATH = ./libft/
@@ -78,7 +80,7 @@ $(CHECKER_OBJ_PATH)%.o: $(CHECKER_SRCS_PATH)%.c
 
 $(PUSH_SWAP_OBJ_PATH)%.o: $(PUSH_SWAP_SRCS_PATH)%.c
 	@mkdir -p $(PUSH_SWAP_OBJ_PATH)
-	$(CC) - c $(CFLAGS) $(PUSH_SWAP_INC) $(LIBFT_INC) $(PRINTF_INC) -o $@ -c $<
+	$(CC) -c $(CFLAGS) $(PUSH_SWAP_INC) $(CHECKER_INC) $(LIBFT_INC) $(PRINTF_INC) -o $@ -c $<
 
 clean:
 	make clean -C $(LIB_PATH)
