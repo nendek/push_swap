@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:01:39 by pnardozi          #+#    #+#             */
-/*   Updated: 2017/12/18 13:01:41 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/03 15:26:00 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 typedef struct	s_nbr
 {
-	int last;
+	int current;
+	int tmp;
 	int pivot;
 	int wall;
 }		t_nbr;
