@@ -15,4 +15,11 @@
 
 # include "checker.h"
 
+typedef struct	s_nbr
+{
+	int last;
+	int pivot;
+	int wall;
+}		t_nbr;
+
 #endif
