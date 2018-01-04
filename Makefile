@@ -36,6 +36,8 @@ CHECKER_SRCS_NAME = checker.c \
 					select_cmd.c
 
 PUSH_SWAP_SRCS_NAME =	push_swap.c \
+			cmd.c \
+			cmd2.c \
 			parsing.c
 
 CHECKER_OBJ_NAME = $(CHECKER_SRCS_NAME:.c=.o)

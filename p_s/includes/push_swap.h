@@ -19,6 +19,8 @@ typedef struct	s_nbr
 {
 	int current;
 	int tmp;
+	int first;
+	int last;
 	int pivot;
 	int wall;
 }		t_nbr;
