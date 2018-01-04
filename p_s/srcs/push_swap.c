@@ -30,13 +30,23 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 	}
 	//partitionnement
 	//les plus grands que pivot dans la pile b
-	while (j != nbr.pivot - 1)
+	while (j != nbr.pivot )
 	{
+		//
+		int x = 0;
+		while (x <= nbr.last)
+		{
+			ft_printf("tab_a[%x] = %d\n", x, tab_a[x]);
+			x++;
+		}
+		//
+		ft_printf("j = %d, pivot = %d\n", j, nbr.pivot);
 		while (tab_a[nbr.first] > tab_a[nbr.pivot])
 		{
 			ft_rrx(tab_a, nbr.last);
 			ft_push(tab_b, tab_a, &nbr.last, &i.b);
 			nbr.pivot = nbr.last;
+			ft_printf("j = %d, pivot = %d\n", j, nbr.pivot);
 		}
 		while (tab_a[j] < tab_a[nbr.pivot])
 			j++;
@@ -64,7 +74,6 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 					j = 0;
 			}
 		}
-		ft_printf("ici\n");
 	}
 	return (0);
 }
@@ -125,10 +134,10 @@ int	main(int argc, char **argv)
 	}
 	//ft_sort(tab_a, tab_b, argc);
 	nbr.first = 0;
-	nbr.last = argc - 1;
+	nbr.last = argc - 2;
 	nbr.pivot = nbr.last;
 	ft_sort(tab_a, tab_b, nbr);
-	while (i <= argc - 1)
+	while (i <= argc - 2)
 	{
 		ft_printf("tab_a[%i] = %d\n", i, tab_a[i]);
 		i++;
