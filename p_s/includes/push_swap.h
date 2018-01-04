@@ -17,12 +17,10 @@
 
 typedef struct	s_nbr
 {
-	int current;
-	int tmp;
+	int pivot;
 	int first;
 	int last;
-	int pivot;
-	int wall;
+	int tmp;
 }		t_nbr;
 
 #endif
