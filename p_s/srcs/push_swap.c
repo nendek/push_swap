@@ -9,14 +9,22 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 
 	j = nbr.first;
 	i.b = -1;
-	// placement du pivot a la fin de la liste
+	ft_printf("LALLAALLALALLA j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
+	///
+	int x = 0;
+	while (x <= nbr.last)
+	{
+		ft_printf("A L ENTRE DE LA FOCNTIONtab_a[%x] = %d\n", x, tab_a[x]);
+		x++;
+	}
+	/// placement du pivot a la fin de la liste
 	while (nbr.pivot != nbr.last)
 	{
-		ft_printf("ici\n");
+		ft_printf("DANS LA BOUCLE POUR PLACER EN FIN DE LISTE LE PIVOT j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
 		if (tab_a[nbr.last] < tab_a[nbr.pivot])
 		{
-			ft_push(tab_b, tab_a, &nbr.last, &i.b);
-			nbr.last = i.a;
+			ft_printf("ICIICICICICI\n");
+			ft_push(tab_b, tab_a, &i.b, &nbr.last);
 		}
 		else if (nbr.last - nbr.pivot == 1)
 		{
@@ -29,16 +37,18 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 			nbr.pivot++;
 		}
 	}
+	ft_printf("APRES LA BOUCLE POUR PLACER EN FIN DE LISTE LE PIVOT j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
 	//partitionnement
 	//les plus grands que pivot dans la pile b
 	//
-	int x = 0;
+	x = 0;
 	while (x <= nbr.last)
 	{
-		ft_printf("tab_a[%x] = %d\n", x, tab_a[x]);
+		ft_printf("APRES LA BOUCLE POUR PLCER A LA FIN DE LA LISTE LE PIVOT tab_a[%x] = %d\n", x, tab_a[x]);
 		x++;
 	}
 	//
+	ft_printf("ICICICICICIC j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
 
 	while (j != nbr.pivot)
 	{
@@ -47,7 +57,6 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 			ft_rrx(tab_a, nbr.last);
 			ft_push(tab_b, tab_a, &i.b, &nbr.last);
 			nbr.pivot = nbr.last;
-			ft_printf("j = %d, pivot = %d, last = %d, i.b = %d, last = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
 		}
 		while (tab_a[j] > tab_a[nbr.pivot])
 			j++;
@@ -78,28 +87,31 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 	}
 	while (i.b != -1)
 		ft_push(tab_a, tab_b, &nbr.last, &i.b);
-	/*
+	//
 	x = 0;
 	while (x <= nbr.last)
 	{
-		ft_printf("tab_a[%x] = %d\n", x, tab_a[x]);
+		ft_printf("FIN DU PARTION :tab_a[%x] = %d\n", x, tab_a[x]);
 		x++;
 	}
-	*/
+	//
 	return (0);
 }
 
-int ft_sort(int *tab_a, int *tab_b, t_nbr nbr)
+int ft_sort(int *tab_a, int *tab_b, t_nbr nbr, int ac)
 {
 	if (nbr.first < nbr.last)
 	{
 		ft_part(tab_a, tab_b, nbr);
-		nbr.tmp = nbr.last;
 		nbr.last = nbr.pivot - 1;
-		ft_sort(tab_a, tab_b, nbr);
-		nbr.last = nbr.tmp;
+		nbr.pivot = nbr.last;
+		ft_printf("BONJOUR MAC LOL\n");
+		ft_sort(tab_a, tab_b, nbr, ac);
 		nbr.first = nbr.pivot + 1;
-		ft_sort(tab_a, tab_b, nbr);
+		nbr.last = ac;	
+		nbr.pivot = nbr.last;
+		ft_printf ("SALUT MEC \n\n");
+		ft_sort(tab_a, tab_b, nbr, ac);
 	}
 	return (0);
 }
@@ -152,7 +164,7 @@ int	main(int argc, char **argv)
 	nbr.first = 0;
 	nbr.last = argc - 2;
 	nbr.pivot = nbr.last;
-	ft_sort(tab_a, tab_b, nbr);
+	ft_sort(tab_a, tab_b, nbr, argc - 2);
 	while (i <= argc - 2)
 	{
 		ft_printf("fini : tab_a[%i] = %d\n", i, tab_a[i]);
