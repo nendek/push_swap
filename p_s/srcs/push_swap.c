@@ -54,16 +54,21 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 	{
 		while (tab_a[nbr.first] < tab_a[nbr.pivot])
 		{
-			ft_rrx(tab_a, nbr.last);
+			ft_printf("ici1\n");
+			ft_rx(tab_a, nbr.last);
 			ft_push(tab_b, tab_a, &i.b, &nbr.last);
 			nbr.pivot = nbr.last;
 		}
 		while (tab_a[j] > tab_a[nbr.pivot])
+		{
+			ft_printf("ici2\n");
 			j++;
+		}
 		if (j != nbr.last)
 		{
 			while (j != nbr.last)
 			{
+				ft_printf("ici3\n");
 				ft_rx(tab_a, nbr.last);
 				nbr.pivot++;
 				if (nbr.pivot > nbr.last)
@@ -72,9 +77,11 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 				if (j > nbr.last)
 					j = 0;
 			}
+			ft_printf("ici4\n");
 			ft_push(tab_b, tab_a, &i.b, &nbr.last);
 			while (nbr.pivot != nbr.last)
 			{
+				ft_printf("ici5\n");
 				ft_rx(tab_a, nbr.last);
 				nbr.pivot++;
 				if (nbr.pivot > nbr.last)
@@ -100,9 +107,10 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 
 int ft_sort(int *tab_a, int *tab_b, t_nbr nbr, int ac)
 {
-	if (nbr.first < nbr.last)
+	if (nbr.first < nbr.last && !(ft_is_sort(tab_a, ac)))
 	{
 		ft_part(tab_a, tab_b, nbr);
+		nbr.first = 0;
 		nbr.last = nbr.pivot - 1;
 		nbr.pivot = nbr.last;
 		ft_printf("BONJOUR MAC LOL\n");
