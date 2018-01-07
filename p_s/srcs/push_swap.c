@@ -9,99 +9,124 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 
 	j = nbr.first;
 	i.b = -1;
-	ft_printf("LALLAALLALALLA j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
-	///
-	int x = 0;
-	while (x <= nbr.last)
-	{
-		ft_printf("A L ENTRE DE LA FOCNTIONtab_a[%x] = %d\n", x, tab_a[x]);
-		x++;
-	}
-	/// placement du pivot a la fin de la liste
 	while (nbr.pivot != nbr.last)
 	{
-		ft_printf("DANS LA BOUCLE POUR PLACER EN FIN DE LISTE LE PIVOT j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
 		if (tab_a[nbr.last] < tab_a[nbr.pivot])
 		{
-			ft_printf("ICIICICICICI\n");
 			ft_push(tab_b, tab_a, &i.b, &nbr.last);
+			ft_printf("pb\n");
 		}
 		else if (nbr.last - nbr.pivot == 1)
 		{
 			ft_sx(tab_a, nbr.last);
+			ft_printf("sa\n");
 			nbr.pivot++;
 		}
 		else
 		{
 			ft_rx(tab_a, nbr.last);
+			ft_printf("ra\n");
 			nbr.pivot++;
 		}
 	}
-	ft_printf("APRES LA BOUCLE POUR PLACER EN FIN DE LISTE LE PIVOT j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
-	//partitionnement
-	//les plus grands que pivot dans la pile b
-	//
-	x = 0;
-	while (x <= nbr.last)
-	{
-		ft_printf("APRES LA BOUCLE POUR PLCER A LA FIN DE LA LISTE LE PIVOT tab_a[%x] = %d\n", x, tab_a[x]);
-		x++;
-	}
-	//
-	ft_printf("ICICICICICIC j = %d, pivot = %d, last = %d, i.b = %d, first = %d\n", j, nbr.pivot, nbr.last, i.b, nbr.first);
-
 	while (j != nbr.pivot)
 	{
 		while (tab_a[nbr.first] < tab_a[nbr.pivot])
 		{
-			ft_printf("ici1\n");
 			ft_rx(tab_a, nbr.last);
+			ft_printf("ra\n");
 			ft_push(tab_b, tab_a, &i.b, &nbr.last);
+			ft_printf("pb\n");
 			nbr.pivot = nbr.last;
 		}
 		while (tab_a[j] > tab_a[nbr.pivot])
-		{
-			ft_printf("ici2\n");
 			j++;
-		}
 		if (j != nbr.last)
 		{
-			while (j != nbr.last)
+			if (j > nbr.last / 2)
 			{
-				ft_printf("ici3\n");
-				ft_rx(tab_a, nbr.last);
-				nbr.pivot++;
-				if (nbr.pivot > nbr.last)
-					nbr.pivot = 0;
-				j++;
-				if (j > nbr.last)
-					j = 0;
+				while (j != nbr.last)
+				{
+					ft_rx(tab_a, nbr.last);
+					ft_printf("ra\n");
+					nbr.pivot++;
+					if (nbr.pivot > nbr.last)
+						nbr.pivot = 0;
+					j++;
+					if (j > nbr.last)
+						j = 0;
+				}
 			}
-			ft_printf("ici4\n");
+			else
+				while (j != nbr.last)
+				{
+					ft_rrx(tab_a, nbr.last);
+					ft_printf("rra\n");
+					nbr.pivot--;
+					if (nbr.pivot < nbr.first)
+						nbr.pivot = nbr.last;
+					j--;
+					if (j < nbr.first)
+						j = nbr.last;
+				}
 			ft_push(tab_b, tab_a, &i.b, &nbr.last);
-			while (nbr.pivot != nbr.last)
+			ft_printf("pb\n");
+			if (nbr.pivot > nbr.last / 2)
 			{
-				ft_printf("ici5\n");
-				ft_rx(tab_a, nbr.last);
-				nbr.pivot++;
-				if (nbr.pivot > nbr.last)
-					nbr.pivot = 0;
-				j++;
-				if (j > nbr.last)
-					j = 0;
+				while (nbr.pivot != nbr.last)
+				{
+					ft_rx(tab_a, nbr.last);
+					ft_printf("ra\n");
+					nbr.pivot++;
+					if (nbr.pivot > nbr.last)
+						nbr.pivot = 0;
+					j++;
+					if (j > nbr.last)
+						j = 0;
+				}
+			}
+			else
+				while (nbr.pivot != nbr.last)
+				{
+					ft_rrx(tab_a, nbr.last);
+					ft_printf("rra\n");
+					nbr.pivot--;
+					if (nbr.pivot < nbr.first)
+						nbr.pivot = nbr.last;
+					j--;
+					if (j < nbr.first)
+						j = nbr.last;
+				}
+			int k = 1;
+			while (i.b > 0 && k == 1)
+			{
+				k = 0;
+				if (tab_b[i.b] < tab_b[i.b - 1] && tab_b[i.b] > tab_b[0])
+				{
+					k = 1;
+					ft_sx(tab_b, i.b);
+					ft_printf("sb ici1\n");
+				}
+				if (tab_b[i.b] < tab_b[0])
+				{
+					k = 1;
+					ft_rx(tab_b, i.b);
+					ft_printf("rb ici2\n");
+				}
+				if (tab_b[0] > tab_b[1])
+				{
+					k = 1;
+					ft_rrx(tab_b, i.b);
+					ft_printf ("rbb ici3\n");
+				}	
 			}
 		}
 	}
 	while (i.b != -1)
-		ft_push(tab_a, tab_b, &nbr.last, &i.b);
-	//
-	x = 0;
-	while (x <= nbr.last)
 	{
-		ft_printf("FIN DU PARTION :tab_a[%x] = %d\n", x, tab_a[x]);
-		x++;
+		ft_push(tab_a, tab_b, &nbr.last, &i.b);
+		ft_printf("pa\n");
 	}
-	//
 	return (0);
 }
 
@@ -113,44 +138,16 @@ int ft_sort(int *tab_a, int *tab_b, t_nbr nbr, int ac)
 		nbr.first = 0;
 		nbr.last = nbr.pivot - 1;
 		nbr.pivot = nbr.last;
-		ft_printf("BONJOUR MAC LOL\n");
-		ft_sort(tab_a, tab_b, nbr, ac);
+		if (!(ft_is_sort(tab_a, ac)))
+			ft_sort(tab_a, tab_b, nbr, ac);
 		nbr.first = nbr.pivot + 1;
 		nbr.last = ac;	
 		nbr.pivot = nbr.last;
-		ft_printf ("SALUT MEC \n\n");
-		ft_sort(tab_a, tab_b, nbr, ac);
+		if (!(ft_is_sort(tab_a, ac)))
+			ft_sort(tab_a, tab_b, nbr, ac);
 	}
 	return (0);
 }
-
-/*void ft_sort(int *tab_a, int *tab_b, int ac)
-  {
-  t_nbr nbr;
-
-  nbr.pivot = tab_a[ac - 1];
-  nbr.wall = 0;
-  nbr.current = 0;
-  if (ft_is_sort(tab_a, ac - 1) != 1)
-  {
-  while (nbr.current < ac)
-  {
-  if (tab_a[nbr.current] <= nbr.pivot)
-  {
-  if (nbr.wall != nbr.current)
-  {
-  nbr.tmp = tab_a[nbr.current];
-  tab_a[nbr.current] = tab_a[nbr.wall];
-  tab_a[nbr.wall] = nbr.tmp;
-  }
-  nbr.wall++;
-  }
-  nbr.current++;
-  }
-  ft_sort(tab_a, tab_b, nbr.wall - 1);
-  ft_sort(tab_a + nbr.wall - 1, tab_b, ac - nbr.wall + 1);
-  }
-  }*/
 
 int	main(int argc, char **argv)
 {
@@ -168,7 +165,6 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
-	//ft_sort(tab_a, tab_b, argc);
 	nbr.first = 0;
 	nbr.last = argc - 2;
 	nbr.pivot = nbr.last;
