@@ -165,10 +165,16 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
+while (i <= argc - 2)
+	{
+		ft_printf("fini : tab_a[%i] = %d\n", i, tab_a[i]);
+		i++;
+	}
 	nbr.first = 0;
 	nbr.last = argc - 2;
 	nbr.pivot = nbr.last;
 	ft_sort(tab_a, tab_b, nbr, argc - 2);
+	i = 0;
 	while (i <= argc - 2)
 	{
 		ft_printf("fini : tab_a[%i] = %d\n", i, tab_a[i]);
