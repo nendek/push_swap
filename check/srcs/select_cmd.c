@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 12:58:12 by pnardozi          #+#    #+#             */
-/*   Updated: 2017/12/19 14:25:40 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/07 15:51:50 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				ft_cmd(int *pile_a, int *pile_b, int end)
 
 	i.a = end;
 	i.b = -1;
-	while (get_next_line_multi(1, &cmd))
+	while (get_next_line_multi(0, &cmd))
 	{
 		if (ft_parsing_cmd(cmd) == 0)
 			return (0);

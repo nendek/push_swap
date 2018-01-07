@@ -105,19 +105,19 @@ int ft_part(int *tab_a, int *tab_b, t_nbr nbr)
 				{
 					k = 1;
 					ft_sx(tab_b, i.b);
-					ft_printf("sb ici1\n");
+					ft_printf("sb\n");
 				}
 				if (tab_b[i.b] < tab_b[0])
 				{
 					k = 1;
 					ft_rx(tab_b, i.b);
-					ft_printf("rb ici2\n");
+					ft_printf("rb\n");
 				}
 				if (tab_b[0] > tab_b[1])
 				{
 					k = 1;
 					ft_rrx(tab_b, i.b);
-					ft_printf ("rbb ici3\n");
+					ft_printf ("rbb\n");
 				}	
 			}
 		}
@@ -174,6 +174,8 @@ int	main(int argc, char **argv)
 		ft_printf("fini : tab_a[%i] = %d\n", i, tab_a[i]);
 		i++;
 	}
+	if (ft_is_sort(tab_a, argc - 2) == 1)
+		ft_printf("OK\n");
 
 	return (0);
 }
