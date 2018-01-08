@@ -2,7 +2,7 @@
 #include "push_swap.h"
 #include "../../libft/libft/includes/libft.h"
 
-int ft_search_small(int *tab, int last)
+int ft_search_small_for_small(int *tab, int last)
 {
 	int i;
 	int j;
@@ -12,14 +12,13 @@ int ft_search_small(int *tab, int last)
 	while (i != last + 1)
 	{
 		if (tab[i] < tab[j])
-			if ((i - last < j - last))
-					j = i;
+			j = i;
 		i++;
 	}
 	return (j);
 }
 
-int ft_sort(int *tab_a, int *tab_b, t_nbr nbr)
+int ft_sort_small(int *tab_a, int *tab_b, t_nbr nbr)
 {
 	t_index i;
 
@@ -31,31 +30,39 @@ int ft_sort(int *tab_a, int *tab_b, t_nbr nbr)
 			ft_sx(tab_a, nbr.last);
 			ft_printf("sa\n");
 		}
-		nbr.pivot = ft_search_small(tab_a, nbr.last);
-		if (nbr.pivot > nbr.last / 2)
+		nbr.pivot = ft_search_small_for_small(tab_a, nbr.last);
+		if (nbr.pivot >= nbr.last / 2)
 			while (nbr.pivot != nbr.last)
 			{
+				if (tab_a[nbr.last] > tab_a[nbr.last - 1] && nbr.last != nbr.pivot && nbr.last - 1 != nbr.pivot)
+				{
+					ft_sx(tab_a, nbr.last);
+					ft_printf("sa\n");
+				}
 				ft_rx(tab_a, nbr.last);
 				ft_printf("ra\n");
 				nbr.pivot++;
+				
 			}
 		else
 			while (nbr.pivot != nbr.last)
 			{
+				if (tab_a[nbr.last] > tab_a[nbr.last - 1] && nbr.last != nbr.pivot && nbr.last - 1 != nbr.pivot)
+				{
+					ft_sx(tab_a, nbr.last);
+					ft_printf("sa\n");
+				}
 				ft_rrx(tab_a, nbr.last);
 				ft_printf("rra\n");
 				nbr.pivot--;
 				if (nbr.pivot < 0)
 					nbr.pivot = nbr.last;
 			}
-		ft_push(tab_b, tab_a, &i.b, &nbr.last);
-		ft_printf("pb\n");
-	}
-	int y = 0;
-	while (y != i.b)
-	{
-		ft_printf("tab_b[%d] = %d\n", y, tab_a[y]);
-		y++;
+		if (!(ft_is_sort(tab_a, nbr.last)))
+		{
+			ft_push(tab_b, tab_a, &i.b, &nbr.last);
+			ft_printf("pb\n");
+		}
 	}
 	while (i.b != -1)
 	{
@@ -81,23 +88,23 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
-/*	while (i <= argc - 2)
-	{
+/*		while (i <= argc - 2)
+		{
 		ft_printf("debut : tab_a[%i] = %d\n", i, tab_a[i]);
 		i++;
-	}*/
-	nbr.first = 0;
+		}
+*/	nbr.first = 0;
 	nbr.last = argc - 2;
 	nbr.pivot = nbr.last;
-	ft_sort(tab_a, tab_b, nbr);
+	ft_sort_small(tab_a, tab_b, nbr);
 	i = 0;
 /*	while (i <= argc - 2)
 	{
 		ft_printf("fini : tab_a[%i] = %d\n", i, tab_a[i]);
 		i++;
-	}*/
+	}
 	if (ft_is_sort(tab_a, argc - 2) == 1)
 		ft_printf("OK\n");
-
+*/
 	return (0);
 }
