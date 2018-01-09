@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/09 10:50:11 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/09 17:50:08 by pnardozi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../../libft/libft/includes/libft.h"
 
-int ft_search_small_for_small(int *tab, int last)
+/*int ft_search_small_for_small(int *tab, int last)
 {
 	int i;
 	int j;
@@ -71,19 +82,22 @@ int ft_sort_small(int *tab_a, int *tab_b, t_nbr nbr)
 	}
 	return (0);
 }
-
+*/
 int	main(int argc, char **argv)
 {
-	int	*tab_a;
-	int	*tab_b;
-	t_nbr	nbr;
+	t_pile		tab;
+	t_nbr		nbr;
+	t_solution	sol;
+	int			p;
+
 	int 	i = 0;
 
-	if(!(tab_a = malloc(sizeof(int) * argc - 1)))
+	p = 0;
+	if(!(tab.pile_a = malloc(sizeof(int) * argc - 1)))
 		return (0);
-	if (!(tab_b = malloc(sizeof(int) * argc - 1)))
+	if (!(tab.pile_b = malloc(sizeof(int) * argc - 1)))
 		return (0);
-	if (ft_parsing_int(argc - 1, argv, tab_a) == 0 || argc < 2)
+	if (ft_parsing_int(argc - 1, argv, tab.pile_a) == 0 || argc < 2)
 	{
 		ft_printf("Error\n");
 		return (0);
@@ -95,8 +109,12 @@ int	main(int argc, char **argv)
 		}
 */	nbr.first = 0;
 	nbr.last = argc - 2;
-	nbr.pivot = nbr.last;
-	ft_sort_small(tab_a, tab_b, nbr);
+	while (p < 3)
+	{
+		ft_sort_small(tab, nbr, &sol.tab[p], p);
+		dprintf(1, "icicicici\n");
+		p++;
+	}
 	i = 0;
 /*	while (i <= argc - 2)
 	{

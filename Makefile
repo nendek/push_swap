@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2017/12/19 19:08:19 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/01/09 13:56:01 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,9 @@ CHECKER_SRCS_NAME = checker.c \
 PUSH_SWAP_SRCS_NAME =	push_swap.c \
 			cmd.c \
 			cmd2.c \
+			algo_small.c \
+			cmd_list.c \
+			list.c \
 			parsing.c
 
 CHECKER_OBJ_NAME = $(CHECKER_SRCS_NAME:.c=.o)
