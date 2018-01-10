@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 11:09:42 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/09 16:32:01 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/10 14:31:36 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_lentgh_list(t_cmd_list *list)
 	int i;
 
 	i = 0;
-	while (list->next)
+	while (list)
 	{
 		list = list->next;
 		i++;
@@ -57,7 +57,7 @@ int		ft_lentgh_list(t_cmd_list *list)
 
 void	ft_put_list(t_cmd_list *list)
 {
-	while (list->next)
+	while (list)
 	{
 		ft_printf("%s\n", list->cmd);
 		list = list->next;

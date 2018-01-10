@@ -6,93 +6,58 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 10:50:11 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/09 17:50:08 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/10 14:41:15 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../../libft/libft/includes/libft.h"
 
-/*int ft_search_small_for_small(int *tab, int last)
+void ft_cpy_tab_int(int *dest, int *srcs, int end)
 {
 	int i;
-	int j;
-
+	
 	i = 0;
-	j = 0;
-	while (i != last + 1)
+	while (i <= end)
 	{
-		if (tab[i] < tab[j])
-			j = i;
+		dest[i] = srcs[i];
 		i++;
 	}
-	return (j);
 }
 
-int ft_sort_small(int *tab_a, int *tab_b, t_nbr nbr)
+void ft_put_small_result(t_solution *sol, int end)
 {
-	t_index i;
+	int tmp;
+	int res;
+	int i;
 
-	i.b = -1;
-	while (!(ft_is_sort(tab_a, nbr.last)))
+	i = 0;
+	tmp = ft_lentgh_list(sol->tab[i]);
+	res = i;
+	i++;
+	while (i < end)
 	{
-		if (tab_a[nbr.last] > tab_a[nbr.last - 1])
+		if (ft_lentgh_list(sol->tab[i]) < tmp)
 		{
-			ft_sx(tab_a, nbr.last);
-			ft_printf("sa\n");
+			res = i;
+			tmp = ft_lentgh_list(sol->tab[i]);
 		}
-		nbr.pivot = ft_search_small_for_small(tab_a, nbr.last);
-		if (nbr.pivot >= nbr.last / 2)
-			while (nbr.pivot != nbr.last)
-			{
-				if (tab_a[nbr.last] > tab_a[nbr.last - 1] && nbr.last != nbr.pivot && nbr.last - 1 != nbr.pivot)
-				{
-					ft_sx(tab_a, nbr.last);
-					ft_printf("sa\n");
-				}
-				ft_rx(tab_a, nbr.last);
-				ft_printf("ra\n");
-				nbr.pivot++;
-				
-			}
-		else
-			while (nbr.pivot != nbr.last)
-			{
-				if (tab_a[nbr.last] > tab_a[nbr.last - 1] && nbr.last != nbr.pivot && nbr.last - 1 != nbr.pivot)
-				{
-					ft_sx(tab_a, nbr.last);
-					ft_printf("sa\n");
-				}
-				ft_rrx(tab_a, nbr.last);
-				ft_printf("rra\n");
-				nbr.pivot--;
-				if (nbr.pivot < 0)
-					nbr.pivot = nbr.last;
-			}
-		if (!(ft_is_sort(tab_a, nbr.last)))
-		{
-			ft_push(tab_b, tab_a, &i.b, &nbr.last);
-			ft_printf("pb\n");
-		}
+		i++;
 	}
-	while (i.b != -1)
-	{
-		ft_push(tab_a, tab_b, &nbr.last, &i.b);
-		ft_printf("pa\n");
-	}
-	return (0);
+	ft_put_list(sol->tab[res]);
 }
-*/
+
 int	main(int argc, char **argv)
 {
 	t_pile		tab;
 	t_nbr		nbr;
 	t_solution	sol;
 	int			p;
-
-	int 	i = 0;
+	int			*tmp;
 
 	p = 0;
+	if (!(tmp = malloc(sizeof(int) * argc - 1)))
+		return (0);
 	if(!(tab.pile_a = malloc(sizeof(int) * argc - 1)))
 		return (0);
 	if (!(tab.pile_b = malloc(sizeof(int) * argc - 1)))
@@ -102,27 +67,23 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
-/*		while (i <= argc - 2)
-		{
-		ft_printf("debut : tab_a[%i] = %d\n", i, tab_a[i]);
-		i++;
-		}
-*/	nbr.first = 0;
+	ft_cpy_tab_int(tmp, tab.pile_a, argc - 1);
+	nbr.first = 0;
 	nbr.last = argc - 2;
-	while (p < 3)
+	while (p < NB_SOL)
 	{
+		ft_cpy_tab_int(tab.pile_a, tmp, argc - 1);
+		sol.tab[p] = NULL;
 		ft_sort_small(tab, nbr, &sol.tab[p], p);
-		dprintf(1, "icicicici\n");
 		p++;
 	}
-	i = 0;
-/*	while (i <= argc - 2)
+	ft_put_small_result(&sol, NB_SOL);
+	//int i = 0;
+	/*while (i < p)
 	{
-		ft_printf("fini : tab_a[%i] = %d\n", i, tab_a[i]);
+		ft_put_list(sol.tab[i]);
+		ft_printf("\n");
 		i++;
-	}
-	if (ft_is_sort(tab_a, argc - 2) == 1)
-		ft_printf("OK\n");
-*/
+	}*/
 	return (0);
 }

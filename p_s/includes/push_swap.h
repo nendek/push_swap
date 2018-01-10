@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:01:39 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/09 14:37:53 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/10 14:41:18 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "checker.h"
+
+# define NB_SOL 4
 
 typedef struct			s_pile
 {
@@ -23,13 +25,13 @@ typedef struct			s_pile
 
 typedef struct			s_cmd_list
 {
-	char				cmd[4];
+	char				cmd[2];
 	struct s_cmd_list	*next;
 }						t_cmd_list;
 
 typedef struct			s_solution
 {
-	t_cmd_list			*tab[3];
+	t_cmd_list			*tab[NB_SOL - 1];
 }						t_solution;
 
 typedef struct			s_nbr
