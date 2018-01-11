@@ -6,7 +6,7 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/01/09 13:56:01 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/01/11 14:19:46 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ PUSH_SWAP_SRCS_NAME =	push_swap.c \
 			cmd.c \
 			cmd2.c \
 			algo_small.c \
+			algo_big.c \
 			cmd_list.c \
 			list.c \
 			parsing.c

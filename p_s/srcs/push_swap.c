@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 10:50:11 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/10 14:41:15 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/11 14:28:14 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 	ft_cpy_tab_int(tmp, tab.pile_a, argc - 1);
 	nbr.first = 0;
 	nbr.last = argc - 2;
-	while (p < NB_SOL)
+	/*while (p < NB_SOL)
 	{
 		ft_cpy_tab_int(tab.pile_a, tmp, argc - 1);
 		sol.tab[p] = NULL;
@@ -78,12 +78,15 @@ int	main(int argc, char **argv)
 		p++;
 	}
 	ft_put_small_result(&sol, NB_SOL);
-	//int i = 0;
-	/*while (i < p)
-	{
+	*/
+	sol.tab[0] = NULL;
+	ft_sort_big(tab, nbr, &sol.tab[0], p);
+	int i = 0;
+	//while (i < p)
+	//{
 		ft_put_list(sol.tab[i]);
-		ft_printf("\n");
-		i++;
-	}*/
+	//	ft_printf("\n");
+	//	i++;
+//	}*/
 	return (0);
 }

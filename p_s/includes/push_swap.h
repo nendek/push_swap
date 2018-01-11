@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:01:39 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/10 14:41:18 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/11 14:13:42 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct			s_nbr
 	int					last;
 }						t_nbr;
 
+int						ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p);
+int						ft_search_small_for_small(int *tab, int last);
 int						ft_sort_small(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p);
 void					ft_pushback_cmd(t_cmd_list **beginlist, char *cmd);
 int						ft_lentgh_list(t_cmd_list *list);
