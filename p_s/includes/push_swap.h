@@ -37,6 +37,7 @@ typedef struct			s_solution
 typedef struct			s_nbr
 {
 	int					pivot;
+	int					pivot_b;
 	int					first;
 	int					last;
 }						t_nbr;
@@ -55,5 +56,9 @@ void					ft_rra_list(int *pile_a, int i_a, t_cmd_list **list);
 void					ft_rrb_list(int *pile_b, int i_b, t_cmd_list **list);
 void					ft_pa_list(t_pile pile, int *last_a, int *last_b, t_cmd_list **list);
 void					ft_pb_list(t_pile pile, int *last_b, int *last_a, t_cmd_list **list);
+
+void	ft_rr_list(t_pile pile, int last_a, int last_b, t_cmd_list **list);
+
+void	ft_rrr_list(t_pile pile, int last_a, int last_b, t_cmd_list **list);
 
 #endif

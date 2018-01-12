@@ -60,3 +60,17 @@ void	ft_pb_list(t_pile pile, int *last_b, int *last_a, t_cmd_list **list)
 	ft_push(pile.pile_b, pile.pile_a, last_b, last_a);
 	ft_pushback_cmd(list, "pb");
 }
+
+void	ft_rr_list(t_pile pile, int last_a, int last_b, t_cmd_list **list)
+{
+	ft_rx(pile.pile_a, last_a);
+	ft_rx(pile.pile_b, last_b);
+	ft_pushback_cmd(list, "rr");
+}
+
+void	ft_rrr_list(t_pile pile, int last_a, int last_b, t_cmd_list **list)
+{
+	ft_rrx(pile.pile_a, last_a);
+	ft_rrx(pile.pile_b, last_b);
+	ft_pushback_cmd(list, "rrr");
+}

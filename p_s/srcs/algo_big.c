@@ -120,7 +120,7 @@ void ft_find_pile_b(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int end_b)
 			}
 	}
 }
-
+/*
 void	ft_place_b(t_pile tab, t_cmd_list **cmd, int end_b, int small)
 {
 	if (small > end_b / 2)
@@ -138,30 +138,16 @@ void	ft_place_b(t_pile tab, t_cmd_list **cmd, int end_b, int small)
 			small--;
 		}
 }
-
+*/
 int ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
 {
 	t_index i;
-	int		small_b;
+//	int		small_b;
 	//int x =0;
 	i.b = p;
 	i.b = -1;
 	while (nbr.last != -1)
 	{
-	/*	x = 0;
-		while (x != nbr.last + 1)
-		{
-			ft_printf("tab_a[%d] = %d\n", x, tab.pile_a[x]);
-			x++;
-		}
-		x = 0;
-		ft_printf("\n");
-		while (x != i.b + 1)
-		{
-			ft_printf("tab_b[%d] = %d\n", x, tab.pile_b[x]);
-			x++;
-		}
-	*/	
 	//	if (tab.pile_a[nbr.last] < tab.pile_a[nbr.last - 1])
 	//			ft_sa_list(tab.pile_a, nbr.last, cmd);
 		nbr.pivot = ft_search_small_for_big(tab.pile_a, nbr.last);
@@ -179,20 +165,18 @@ int ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
 				if (nbr.pivot < 0)
 					nbr.pivot = nbr.last;
 			}
-		//	ft_printf("last de tab_a[%d] = %d\n", nbr.last, tab.pile_a[nbr.last]);
 		if (i.b == 1)
 			if(tab.pile_b[0] > tab.pile_b[1])
 				ft_sb_list(tab.pile_b, i.b, cmd);
 		//trouver le plus grand des plus petit dans le pile b et le positionner au sommet de la pile b
 		if (i.b >= 1)
 			ft_find_pile_b(tab, nbr, cmd, i.b);
-
 		ft_pb_list(tab, &i.b, &nbr.last, cmd);
 	}
 	//ensuite placer b dans ll ordre avec des rb ou rrb
-	small_b = ft_search_small_for_small(tab.pile_b, i.b);
+//	small_b = ft_search_small_for_small(tab.pile_b, i.b);
 	//	ft_printf("small_b = %d\n", small_b);
-	ft_place_b(tab, cmd, i.b, small_b);
+	//ft_place_b(tab, cmd, i.b, small_b);
 /*	x = 0;
 	while (x != i.b + 1)
 	{
@@ -202,7 +186,6 @@ int ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
 */	//et ensuite pour finir pa
 	while (i.b != -1)
 		ft_pa_list(tab, &nbr.last, &i.b, cmd);
-
 /*	x = 0;
 	while (x != nbr.last + 1)
 	{
