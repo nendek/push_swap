@@ -45,39 +45,51 @@ int ft_search_small_for_big(int *tab, int last)
 	// on renvoie celui avec le moin de coup
 	if (ret > j - last)
 		ret = j;
+	ft_printf("\nret = %d\n", ret);
 	return (ret);
 }
 
 void ft_find_pile_b(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int end_b)
 {
 	int i;
-	int ret;
 	int j;
 
 	i = 0;
-	j = 0;
-	//touver le plus grand des plus petit que tab_a[nbr.last]
-	ret = tab.pile_a[0];
+	j = -1;
+	//trouver si il y a un plus petit
 	while (i != end_b + 1)
 	{
-		if (tab.pile_b[i] < tab.pile_a[nbr.last] && tab.pile_b[i] > ret)
+		if (tab.pile_b[i] < tab.pile_a[nbr.last])
+		{
 			j = i;
+			break;
+		}
 		i++;
 	}
-	if (j >= end_b / 2)
-		while (j != end_b)
+	if (j > -1)
+	{//touver le plus grand des plus petit que tab_a[nbr.last]
+		while (i != end_b + 1)
 		{
-			ft_rb_list(tab.pile_b, end_b, cmd);
-			j++;
+			if (tab.pile_b[i] < tab.pile_a[nbr.last] && tab.pile_b[j] < tab.pile_b[i])
+				j = i;
+			i++;
 		}
-	else
-		while (j != end_b)
-		{
-			ft_rrb_list(tab.pile_b, end_b, cmd);
-			j++;
-			if (j < 0)
-				j = end_b;
-		}
+		ft_printf("j = %d\n", j);
+		if (j >= end_b / 2)
+			while (j != end_b)
+			{
+				ft_rb_list(tab.pile_b, end_b, cmd);
+				j++;
+			}
+		else
+			while (j != end_b)
+			{
+				ft_rrb_list(tab.pile_b, end_b, cmd);
+				j++;
+				if (j < 0)
+					j = end_b;
+			}
+	}
 }
 
 void	ft_place_b(t_pile tab, t_cmd_list **cmd, int end_b, int small)
@@ -103,11 +115,24 @@ int ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
 {
 	t_index i;
 	int		small_b;
-
+	int x =0;
 	i.b = p;
 	i.b = -1;
-	while (!ft_is_sort(tab.pile_a, nbr.last))
+	while (nbr.last != 0)
 	{
+		x = 0;
+		while (x != nbr.last + 1)
+		{
+			ft_printf("tab_a[%d] = %d\n", x, tab.pile_a[x]);
+			x++;
+		}
+		x = 0;
+		ft_printf("\n");
+		while (x != i.b + 1)
+		{
+			ft_printf("tab_b[%d] = %d\n", x, tab.pile_b[x]);
+			x++;
+		}
 		nbr.pivot = ft_search_small_for_big(tab.pile_a, nbr.last);
 		if (nbr.pivot >= nbr.last / 2)
 			while (nbr.pivot != nbr.last)
@@ -123,14 +148,20 @@ int ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
 				if (nbr.pivot < 0)
 					nbr.pivot = nbr.last;
 			}
+		ft_printf("last de tab_a[%d] = %d\n", nbr.last, tab.pile_a[nbr.last]);
 		if (i.b == 1)
-			if(tab.pile_b[0] < tab.pile_b[1])
+			if(tab.pile_b[0] > tab.pile_b[1])
 				ft_sb_list(tab.pile_b, i.b, cmd);
 		//trouver le plus grand des plus petit dans le pile b et le positionner au sommet de la pile b
-		if (i.b > 1)
+		if (i.b >= 1)
 			ft_find_pile_b(tab, nbr, cmd, i.b);
+		x = 0;
+		while (x != i.b + 1)
+		{
+			ft_printf("ICICICtab_b[%d] = %d\n", x, tab.pile_b[x]);
+			x++;
+		}
 		ft_pb_list(tab, &i.b, &nbr.last, cmd);
-
 	}
 	//ensuite placer b dans ll ordre avec des rb ou rrb
 	small_b = ft_search_small_for_big(tab.pile_b, i.b);
@@ -139,7 +170,7 @@ int ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
 	while (i.b != -1)
 		ft_pa_list(tab, &nbr.last, &i.b, cmd);
 
-	int x = 0;
+	x = 0;
 	while (x != nbr.last + 1)
 	{
 		ft_printf("tab_a[%d] = %d\n", x, tab.pile_a[x]);
