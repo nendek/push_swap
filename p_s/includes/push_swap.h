@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:01:39 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/11 14:13:42 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/13 14:25:55 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void					ft_rra_list(int *pile_a, int i_a, t_cmd_list **list);
 void					ft_rrb_list(int *pile_b, int i_b, t_cmd_list **list);
 void					ft_pa_list(t_pile pile, int *last_a, int *last_b, t_cmd_list **list);
 void					ft_pb_list(t_pile pile, int *last_b, int *last_a, t_cmd_list **list);
-
 void	ft_rr_list(t_pile pile, int last_a, int last_b, t_cmd_list **list);
-
 void	ft_rrr_list(t_pile pile, int last_a, int last_b, t_cmd_list **list);
 
 #endif
