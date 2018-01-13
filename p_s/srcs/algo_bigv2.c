@@ -21,7 +21,7 @@ int ft_search_small_for_big(int *tab, int last)
 	int limit = 0;
 	
 	if (last <= 500)
-		limit = 20;
+		limit = 13;
 /*	if (last <= 450)
 		limit = 22;
 	if (last <= 400)
@@ -53,6 +53,17 @@ int ft_search_small_for_big(int *tab, int last)
 		i++;
 	}
 	ret = j;
+
+	i = last;
+	j = last;
+	while (i != last - limit && i != 0)
+	{
+		if (tab[i] < tab[j])
+			j = i;
+		i--;
+	}
+	if (tab[ret] > tab[j])
+		ret = j;	
 	return (ret);
 }
 
