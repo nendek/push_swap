@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../../libft/libft/includes/libft.h"
 
 t_cmd_list *ft_create_elem(char *cmd)
 {

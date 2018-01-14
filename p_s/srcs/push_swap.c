@@ -11,21 +11,20 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../../libft/libft/includes/libft.h"
 
-void ft_cpy_tab_int(int *dest, int *srcs, int end)
+static		void ft_cpy_tab_int(int *dest, int *srcs, int end)
 {
 	int i;
-	
+
 	i = 0;
-	while (i <= end)
+	while (i <= end + 1)
 	{
 		dest[i] = srcs[i];
 		i++;
 	}
 }
 
-void ft_put_small_result(t_solution *sol, int end)
+static		void ft_put_small_result(t_solution *sol, int end)
 {
 	int tmp;
 	int res;
@@ -47,46 +46,71 @@ void ft_put_small_result(t_solution *sol, int end)
 	ft_put_list(sol->tab[res]);
 }
 
+static char	**recovery(char **av, int ac, int *length, int *i)
+{
+	if (ac == 2)
+	{
+		*length = ft_countword(av[1], ' ');
+		*i = 0;
+		return (ft_strsplit(av[1], ' '));
+	}
+	else
+	{
+		*length = ac - 1;
+		*i  = 1;
+		return (av);
+	}
+}
+
+static void	ft_sort(t_pile tab, t_nbr nbr, int *tmp)
+{
+	t_solution 	sol;
+	int		p;
+
+	p = 0;
+	sol.tab[p] = NULL;
+	ft_cpy_tab_int(tmp, tab.pile_a, nbr.last_a);
+	if (nbr.last_a <= 15)
+	{
+		while (p < NB_SOL)
+		{
+			ft_cpy_tab_int(tab.pile_a, tmp, nbr.last_a);
+			sol.tab[p] = NULL;
+			ft_sort_small(tab, nbr, &sol.tab[p], p);
+			p++;
+		}
+		ft_put_small_result(&sol, NB_SOL);
+	}
+	else
+	{
+		ft_sort_big(tab, nbr, &sol.tab[p]);
+		ft_put_list(sol.tab[p]);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_pile		tab;
 	t_nbr		nbr;
-	t_solution	sol;
-	int			p;
-	int			*tmp;
+	int		*tmp;
+	char		**av;
+	int		length;
+	int		i;
 
-	p = 0;
-	if (!(tmp = malloc(sizeof(int) * argc - 1)))
+	av = recovery(argv, argc, &length, &i);
+	if (!(tmp = malloc(sizeof(int) * length)))
 		return (0);
-	if(!(tab.pile_a = malloc(sizeof(int) * argc - 1)))
+	if(!(tab.pile_a = malloc(sizeof(int) * length)))
 		return (0);
-	if (!(tab.pile_b = malloc(sizeof(int) * argc - 1)))
+	if (!(tab.pile_b = malloc(sizeof(int) * length)))
 		return (0);
-	if (ft_parsing_int(argc - 1, argv, tab.pile_a) == 0 || argc < 2)
+	if (ft_parsing_int(length , av, tab.pile_a, i) == 0 || length < 2)
 	{
 		ft_printf("Error\n");
 		return (0);
 	}
-	ft_cpy_tab_int(tmp, tab.pile_a, argc - 1);
-	nbr.first = 0;
-	nbr.last = argc - 2;
-	/*while (p < NB_SOL)
-	{
-		ft_cpy_tab_int(tab.pile_a, tmp, argc - 1);
-		sol.tab[p] = NULL;
-		ft_sort_small(tab, nbr, &sol.tab[p], p);
-		p++;
-	}
-	ft_put_small_result(&sol, NB_SOL);
-	*/
-	sol.tab[0] = NULL;
-	ft_sort_big(tab, nbr, &sol.tab[0], p);
-	int i = 0;
-	//while (i < p)
-	//{
-		ft_put_list(sol.tab[i]);
-	//	ft_printf("\n");
-	//	i++;
-//	}*/
+	nbr.last_a = length - 1;
+	nbr.last_b = -1;
+	ft_sort(tab, nbr, tmp);
 	return (0);
 }

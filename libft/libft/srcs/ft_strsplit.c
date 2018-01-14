@@ -44,7 +44,7 @@ char		**ft_strsplit(char const *s, char c)
 {
 	int		nb_word;
 	int		*size_word;
-	char	**tab;
+	char		**tab;
 	int		i;
 
 	i = 0;

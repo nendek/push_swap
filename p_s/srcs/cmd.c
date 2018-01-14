@@ -6,22 +6,16 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 14:15:32 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/09 13:23:49 by pnardozi         ###   ########.fr       */
+/*   Updated: 2017/12/19 14:15:36 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 void	ft_sx(int *pile_x, int i_x)
 {
 	if (i_x > 0)
 		ft_swap(&pile_x[i_x], &pile_x[i_x - 1]);
-}
-
-void	ft_ss(int *pile_a, int *pile_b, t_index i)
-{
-	ft_sx(pile_a, i.a);
-	ft_sx(pile_b, i.b);
 }
 
 void	ft_rx(int *pile_x, int i_x)
@@ -37,8 +31,15 @@ void	ft_rx(int *pile_x, int i_x)
 		}
 }
 
-void	ft_rr(int *pile_a, int *pile_b, t_index i)
+void	ft_rrx(int *pile_x, int i_x)
 {
-	ft_rx(pile_a, i.a);
-	ft_rx(pile_b, i.b);
+	int cursor;
+
+	cursor = 0;
+	if (i_x >= 1)
+		while (cursor != i_x)
+		{
+			ft_swap(&pile_x[cursor], &pile_x[cursor + 1]);
+			cursor++;
+		}
 }

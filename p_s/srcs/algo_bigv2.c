@@ -11,37 +11,15 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../../libft/libft/includes/libft.h"
 
-int ft_search_small_for_big(int *tab, int last)
+static int ft_search_small_for_big(int *tab, int last)
 {
 	int i;
 	int j;
 	int ret;
 	int limit = 0;
-	
-	if (last <= 500)
-		limit = 13;
-/*	if (last <= 450)
-		limit = 22;
-	if (last <= 400)
-		limit = 22;
-	if (last <= 350)
-		limit = 23;
-	if (last <= 300)
-		limit = 21;
-	if (last <= 250)
-		limit = 28;
-	if (last <= 200)
-		limit = 14;
-	if (last <= 150)
-		limit = 26;
-	if (last <= 100)
-		limit = 12;
-	if (last <= 50)
-		limit = 11;
-*/	//if (last <= 400)
-	//	limit = 22;
+
+	limit = 18;
 	i = 0;	
 	j = 0;
 	if (limit > last)
@@ -53,7 +31,6 @@ int ft_search_small_for_big(int *tab, int last)
 		i++;
 	}
 	ret = j;
-
 	i = last;
 	j = last;
 	while (i != last - limit && i != 0)
@@ -67,16 +44,16 @@ int ft_search_small_for_big(int *tab, int last)
 	return (ret);
 }
 
-int 	ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int end_b, int *meaning)
+static int 	ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int *meaning)
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = -1;
-	while (i != end_b + 1)
+	while (i != nbr.last_b + 1)
 	{
-		if (tab.pile_b[i] < tab.pile_a[nbr.pivot])
+		if (tab.pile_b[i] < tab.pile_a[nbr.pivot_a])
 		{
 			j = i;
 			break;
@@ -85,10 +62,9 @@ int 	ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int end_b, int *meaning)
 	}
 	if (j > -1)
 	{
-		*meaning = 0;
-		while (i != end_b + 1)
+		while (i != nbr.last_b + 1)
 		{
-			if (tab.pile_b[i] < tab.pile_a[nbr.pivot] && tab.pile_b[j] < tab.pile_b[i])
+			if (tab.pile_b[i] < tab.pile_a[nbr.pivot_a] && tab.pile_b[j] < tab.pile_b[i])
 				j = i;
 			i++;
 		}	
@@ -98,7 +74,7 @@ int 	ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int end_b, int *meaning)
 		i = 0;
 		j = 0;
 		*meaning = 1;
-		while (i != end_b + 1)
+		while (i != nbr.last_b + 1)
 		{
 			if (tab.pile_b[j] > tab.pile_b[i])
 				j = i;
@@ -108,113 +84,110 @@ int 	ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int end_b, int *meaning)
 	return (j);
 }
 
-void	ft_place(t_pile tab, t_nbr nbr, int end_b, t_cmd_list **cmd, int meaning)
+static void	ft_last_sort_b(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int meaning)
 {
-	if (nbr.pivot >= nbr.last / 2)
-	{
-		while(nbr.pivot != nbr.last)
+	if (nbr.pivot_b >= nbr.last_b / 2 && nbr.last_b >= 1 && meaning == 0)
+		while (nbr.pivot_b++ != nbr.last_b)
+			ft_rb_list(tab.pile_b, nbr.last_b, cmd);
+	else if (nbr.last_b >= 1 && meaning == 0)
+		while (nbr.pivot_b != nbr.last_b)
 		{
-			if (nbr.pivot_b != end_b && nbr.pivot_b >= end_b / 2 && end_b >= 1 && meaning == 0)
-			{
-				ft_rr_list(tab, nbr.last, end_b, cmd);
-				nbr.pivot++;
-				nbr.pivot_b++;
-			}
-			else if (nbr.pivot_b != 0 && nbr.pivot_b >= end_b / 2 && end_b >= 1 && meaning == 1)
-			{
-				ft_rr_list(tab, nbr.last, end_b, cmd);
-				nbr.pivot++;
-				nbr.pivot_b++;
-				if (nbr.pivot_b > end_b)
-					nbr.pivot_b = 0;
-			}
-			else
-			{
-				ft_ra_list(tab.pile_a, nbr.last, cmd);
-				nbr.pivot++;
-			}
-		}
-	}
-	else
-		while (nbr.pivot != nbr.last)
-		{
-			if (nbr.pivot_b != end_b && nbr.pivot_b <= end_b / 2 && end_b >= 1 && meaning == 0)
-			{
-				ft_rrr_list(tab, nbr.last, end_b, cmd);
-				nbr.pivot--;
-				nbr.pivot_b--;
-				if (nbr.pivot < 0)
-					nbr.pivot = nbr.last;
-				if (nbr.pivot_b < 0)
-					nbr.pivot_b = end_b;
-			}
-			else if (nbr.pivot_b != 0 && nbr.pivot_b <= end_b / 2 && end_b >= 1 && meaning == 1)
-			{
-				ft_rrr_list(tab, nbr.last, end_b, cmd);
-				nbr.pivot--;
-				nbr.pivot_b--;
-				if (nbr.pivot < 0)
-					nbr.pivot = nbr.last;
-			}
-			else
-			{
-				ft_rra_list(tab.pile_a, nbr.last, cmd);
-				nbr.pivot--;
-				if (nbr.pivot < 0)
-					nbr.pivot = nbr.last;
-			}
-		}	
-	if (nbr.pivot_b >= end_b / 2 && end_b >= 1 && meaning == 0)
-		while (nbr.pivot_b != end_b)
-		{
-			ft_rb_list(tab.pile_b, end_b, cmd);
-			nbr.pivot_b++;
-		}
-	else if (end_b >= 1 && meaning == 0)
-		while (nbr.pivot_b != end_b)
-		{
-			ft_rrb_list(tab.pile_b, end_b, cmd);
+			ft_rrb_list(tab.pile_b, nbr.last_b, cmd);
 			nbr.pivot_b--;
 			if (nbr.pivot_b < 0)
-				nbr.pivot_b = end_b;
+				nbr.pivot_b = nbr.last_b;
 		}
-	else if (nbr.pivot_b >= end_b / 2 && end_b >= 1 && meaning == 1)
+	else if (nbr.pivot_b >= nbr.last_b / 2 && nbr.last_b >= 1 && meaning == 1)
 		while (nbr.pivot_b != 0)
 		{
-			ft_rb_list(tab.pile_b, end_b, cmd);
+			ft_rb_list(tab.pile_b, nbr.last_b, cmd);
 			nbr.pivot_b++;
-			if (nbr.pivot_b > end_b)
+			if (nbr.pivot_b > nbr.last_b)
 				nbr.pivot_b = 0;
 		}
-	else if (end_b >= 1 && meaning == 1)
-		while (nbr.pivot_b != 0)
-		{
-			ft_rrb_list(tab.pile_b, end_b, cmd);
-			nbr.pivot_b--;
-		}
+	else if (nbr.last_b >= 1 && meaning == 1)
+		while (nbr.pivot_b-- != 0)
+			ft_rrb_list(tab.pile_b, nbr.last_b, cmd);
 }
 
-int	ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
+static void	ft_sort_rr(t_pile tab, t_nbr *nbr, t_cmd_list **cmd, int meaning)
 {
-	t_index i;
-	int meaning;
-	meaning = 0;
-	i.b = p;
-	i.b = -1;
-	if (ft_is_sort(tab.pile_a, nbr.last) == 0)
-		while (nbr.last != -1)
+	while(nbr->pivot_a++ != nbr->last_a)
+	{
+		if (nbr->pivot_b != nbr->last_b && nbr->pivot_b >= nbr->last_b / 2 && nbr->last_b >= 1 && meaning == 0)
 		{
-			nbr.pivot = ft_search_small_for_big(tab.pile_a, nbr.last);
-			nbr.pivot_b = ft_find_pile_b_pos(tab, nbr, i.b, &meaning);
-			ft_place(tab, nbr, i.b, cmd, meaning);
-			ft_pb_list(tab, &i.b, &nbr.last, cmd);
-			if (i.b == 1)
+			ft_rr_list(tab, nbr->last_a, nbr->last_b, cmd);
+			nbr->pivot_b++;
+		}
+		else if (nbr->pivot_b != 0 && nbr->pivot_b >= nbr->last_b / 2 && nbr->last_b >= 1 && meaning == 1)
+		{
+			ft_rr_list(tab, nbr->last_a, nbr->last_b, cmd);
+			nbr->pivot_b++;
+			if (nbr->pivot_b > nbr->last_b)
+				nbr->pivot_b = 0;
+		}
+		else
+			ft_ra_list(tab.pile_a, nbr->last_a, cmd);
+	}
+}
+
+static void	ft_sort_rrr(t_pile tab, t_nbr *nbr, t_cmd_list **cmd, int meaning)
+{
+	while (nbr->pivot_a-- != nbr->last_a)
+	{
+		if (nbr->pivot_b != nbr->last_b && nbr->pivot_b <= nbr->last_b / 2 && nbr->last_b >= 1 && meaning == 0)
+		{
+			ft_rrr_list(tab, nbr->last_a, nbr->last_b, cmd);
+			nbr->pivot_b--;
+			if (nbr->pivot_a < 0)
+				nbr->pivot_a = nbr->last_a;
+			if (nbr->pivot_b < 0)
+				nbr->pivot_b = nbr->last_b;
+		}
+		else if (nbr->pivot_b != 0 && nbr->pivot_b <= nbr->last_b / 2 && nbr->last_b >= 1 && meaning == 1)
+		{
+			ft_rrr_list(tab, nbr->last_a, nbr->last_b, cmd);
+			nbr->pivot_b--;
+			if (nbr->pivot_a < 0)
+				nbr->pivot_a = nbr->last_a;
+		}
+		else
+		{
+			ft_rra_list(tab.pile_a, nbr->last_a, cmd);
+			if (nbr->pivot_a < 0)
+				nbr->pivot_a = nbr->last_a;
+		}
+	}
+}
+
+static void	ft_place(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int meaning)
+{
+	if (nbr.pivot_a >= nbr.last_a / 2)
+		ft_sort_rr(tab, &nbr, cmd, meaning);
+	else
+		ft_sort_rrr(tab, &nbr, cmd, meaning);
+	ft_last_sort_b(tab, nbr, cmd, meaning);
+}
+
+int	ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd)
+{
+	int meaning;
+
+	meaning = 0;
+	if (ft_is_sort(tab.pile_a, nbr.last_a) == 0)
+		while (nbr.last_a != -1)
+		{
+			nbr.pivot_a = ft_search_small_for_big(tab.pile_a, nbr.last_a);
+			nbr.pivot_b = ft_find_pile_b_pos(tab, nbr, &meaning);
+			ft_place(tab, nbr, cmd, meaning);
+			ft_pb_list(tab, &nbr.last_b, &nbr.last_a, cmd);
+			if (nbr.last_b == 1)
 			{
 				if(tab.pile_b[0] > tab.pile_b[1])
-					ft_sb_list(tab.pile_b, i.b, cmd);
+					ft_sb_list(tab.pile_b, nbr.last_b, cmd);
 			}
 		}
-	while (i.b != -1)
-		ft_pa_list(tab, &nbr.last, &i.b, cmd);
+	while (nbr.last_b != -1)
+		ft_pa_list(tab, &nbr.last_a, &nbr.last_b, cmd);
 	return (0);
 }

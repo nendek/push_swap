@@ -29,18 +29,18 @@ PUSH_SWAP_SRCS_PATH = ./p_s/srcs/
 PUSH_SWAP_INCLUDES_PATH = ./p_s/includes/
 PUSH_SWAP_OBJ_PATH = ./p_s/obj/
 
-CHECKER_SRCS_NAME = checker.c \
-					cmd.c \
-					cmd2.c \
-					parsing.c \
-					select_cmd.c
-
-PUSH_SWAP_SRCS_NAME =	push_swap.c \
+CHECKER_SRCS_NAME =	checker.c \
 			cmd.c \
 			cmd2.c \
+			parsing.c \
+			select_cmd.c
+
+PUSH_SWAP_SRCS_NAME =	push_swap.c \
 			algo_small.c \
 			algo_bigv2.c \
+			cmd.c \
 			cmd_list.c \
+			cmd_list2.c \
 			list.c \
 			parsing.c
 
@@ -86,7 +86,7 @@ $(CHECKER_OBJ_PATH)%.o: $(CHECKER_SRCS_PATH)%.c
 
 $(PUSH_SWAP_OBJ_PATH)%.o: $(PUSH_SWAP_SRCS_PATH)%.c
 	@mkdir -p $(PUSH_SWAP_OBJ_PATH)
-	$(CC) -c $(CFLAGS) $(PUSH_SWAP_INC) $(CHECKER_INC) $(LIBFT_INC) $(PRINTF_INC) -o $@ -c $<
+	$(CC) -c $(CFLAGS) $(PUSH_SWAP_INC) $(LIBFT_INC) $(PRINTF_INC) -o $@ -c $<
 
 clean:
 	make clean -C $(LIB_PATH)
