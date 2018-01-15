@@ -43,6 +43,9 @@ typedef struct			s_nbr
 	int			last_b;
 }				t_nbr;
 
+int				ft_search_small_for_big(int *tab, int last);
+int				ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int *meaning);
+
 int				ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd);
 int				ft_search_small_for_small(int *tab, int last);
 int				ft_sort_small(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p);

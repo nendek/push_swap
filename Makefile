@@ -37,7 +37,8 @@ CHECKER_SRCS_NAME =	checker.c \
 
 PUSH_SWAP_SRCS_NAME =	push_swap.c \
 			algo_small.c \
-			algo_bigv2.c \
+			algo_big.c \
+			algo_big2.c \
 			cmd.c \
 			cmd_list.c \
 			cmd_list2.c \
