@@ -74,28 +74,30 @@ static void	ft_sort_rrr(t_pile tab, t_nbr *nbr, int meaning)
 				nbr->pivot_a = nbr->last_a;
 		}
 	}
+
 }
 
-static void	ft_place(t_pile tab, t_nbr nbr, int meaning)
+static void	ft_place(t_pile tab, t_nbr *nbr, int meaning)
 {
-	if (nbr.pivot_a >= nbr.last_a / 2)
-		ft_sort_rr(tab, &nbr, meaning);
+	if (nbr->pivot_a >= nbr->last_a / 2)
+		ft_sort_rr(tab, nbr, meaning);
 	else
-		ft_sort_rrr(tab, &nbr, meaning);
-	ft_last_sort_b(tab, &nbr, meaning);
+		ft_sort_rrr(tab, nbr, meaning);
+	ft_last_sort_b(tab, nbr, meaning);
 }
 
 int		ft_sort_big_sim(t_pile tab, t_nbr nbr)
 {
 	int meaning;
-
+	
+	nbr.coups = 0;
 	meaning = 0;
 	if (ft_is_sort(tab.pile_a, nbr.last_a) == 0)
 		while (nbr.last_a != -1)
 		{
-			nbr.pivot_a = ft_search_small_for_big_sim(tab.pile_a, nbr.last_a, nbr.limit1);
+			nbr.pivot_a = ft_search_small_for_big_sim(tab.pile_a, nbr.last_a, nbr.limit1, nbr.limit2);
 			nbr.pivot_b = ft_find_pile_b_pos_sim(tab, nbr, &meaning);
-			ft_place(tab, nbr, meaning);
+			ft_place(tab, &nbr, meaning);
 			ft_pb_sim(tab, &nbr.last_b, &nbr.last_a, &nbr.coups);
 			if (nbr.last_b == 1)
 				if(tab.pile_b[0] > tab.pile_b[1])

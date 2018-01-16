@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 13:37:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/13 22:21:06 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/16 13:58:33 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd)
 	if (ft_is_sort(tab.pile_a, nbr.last_a) == 0)
 		while (nbr.last_a != -1)
 		{
-			nbr.pivot_a = ft_search_small_for_big(tab.pile_a, nbr.last_a);
+			nbr.pivot_a = ft_search_small_for_big(tab.pile_a, nbr);
 			nbr.pivot_b = ft_find_pile_b_pos(tab, nbr, &meaning);
 			ft_place(tab, nbr, cmd, meaning);
 			ft_pb_list(tab, &nbr.last_b, &nbr.last_a, cmd);

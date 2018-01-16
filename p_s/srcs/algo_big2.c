@@ -17,22 +17,23 @@ static int	ft_is_small(int *tab, int last)
 	return (tmp);
 }
 
-int		ft_search_small_for_big(int *tab, int last)
+int		ft_search_small_for_big(int *tab, t_nbr nbr)
 {
 	int i;
 	int j;
 	int ret;
 	int limit = 0;
 
-	limit = 12;
-	if (limit > last)
-		limit = last + 1;
+	limit = nbr.limit1;
+	if (limit > nbr.last_a)
+		limit = nbr.last_a + 1;
 	ret = ft_is_small(tab, limit);
-	i = last;
-	j = last;
-	if (limit > last)
-		limit = last + 1;
-	while (i != last - limit && i != 0)
+	i = nbr.last_a;
+	j = nbr.last_a;
+	limit = nbr.limit2;
+	if (limit > nbr.last_a)
+		limit = nbr.last_a + 1;
+	while (i != nbr.last_a - limit && i != 0)
 	{
 		if (tab[i] < tab[j])
 			j = i;

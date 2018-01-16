@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 10:50:11 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/13 14:45:48 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/16 13:44:49 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,42 @@ static char	**recovery(char **av, int ac, int *length, int *i)
 	}
 }
 
-void		ft_simulate(t_pile tab, t_nbr nbr)
+int		ft_simulate(t_pile tab, t_nbr *nbr)
 {
+	int *tmp_tab;
 	int tmp;
 	int sol;
+	int sol2;
 	t_nbr sim;
+	int tmp2;
 
-	sim = nbr;
-	sim.coups = 0;
+	if (!(tmp_tab = malloc(sizeof(int) * nbr->last_a + 1)))
+		return (0);
+	ft_cpy_tab_int(tmp_tab, tab.pile_a, nbr->last_a);
+	sim = *nbr;
 	sim.limit1 = 5;
-	tmp = ft_sort_big_sim(tab, sim);
-	while (sim.limit1 != 30)
+	sim.limit2 = 5;
+	tmp2 = ft_sort_big_sim(tab, sim);
+	while (sim.limit1 != 25)
 	{
-		ft_printf("nbr.coup = %d\n", sim.coups);
-		sim.coups = ft_sort_big_sim(tab, sim);
-		if (sim.coups < tmp)
+		while (sim.limit2 != 25)
 		{
-			tmp = sim.coups;
-			sol = sim.limit1;
+			ft_cpy_tab_int(tab.pile_a, tmp_tab, nbr->last_a);
+			tmp = ft_sort_big_sim(tab, sim);
+			if (tmp2 > tmp)
+			{
+				tmp2 = tmp;
+				sol = sim.limit1;
+				sol2 = sim.limit2;
+			}
+			sim.limit2++;
 		}
-		sim.limit1++;
+			sim.limit1++;
+			sim.limit2 = 0;
 	}
-	ft_printf("sol = %d", sol);
-	sim.limit1 = sol;
+	nbr->limit1 = sol;
+	nbr->limit2 = sol2;
+	return (1);
 }
 
 static void	ft_sort(t_pile tab, t_nbr nbr, int *tmp)
@@ -108,7 +121,8 @@ static void	ft_sort(t_pile tab, t_nbr nbr, int *tmp)
 	}
 	else
 	{
-		ft_simulate(tab, nbr);
+		ft_simulate(tab, &nbr);
+		ft_cpy_tab_int(tab.pile_a, tmp, nbr.last_a);
 		ft_sort_big(tab, nbr, &sol.tab[p]);
 		ft_put_list(sol.tab[p]);
 	}

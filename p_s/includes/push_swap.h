@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:01:39 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/13 14:25:55 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/16 13:39:58 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,16 @@ typedef struct			s_nbr
 	int			last_a;
 	int			last_b;
 	int			limit1;
+	int			limit2;
 	int			coups;
 }				t_nbr;
 
 int 				ft_find_pile_b_pos_sim(t_pile tab, t_nbr nbr, int *meaning);
-int				ft_search_small_for_big_sim(int *tab, int last, int limit);
+int				ft_search_small_for_big_sim(int *tab, int last, int limit1, int limit2);
 int				ft_sort_big_sim(t_pile tab, t_nbr nbr);
 
 
-int				ft_search_small_for_big(int *tab, int last);
+int				ft_search_small_for_big(int *tab, t_nbr nbr);
 int				ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int *meaning);
 int				ft_sort_big(t_pile tab, t_nbr nbr, t_cmd_list **cmd);
 

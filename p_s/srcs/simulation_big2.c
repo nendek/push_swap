@@ -17,20 +17,20 @@ static int	ft_is_small_sim(int *tab, int last)
 	return (tmp);
 }
 
-int		ft_search_small_for_big_sim(int *tab, int last, int limit)
+int		ft_search_small_for_big_sim(int *tab, int last, int limit1, int limit2)
 {
 	int i;
 	int j;
 	int ret;
 
-	if (limit > last)
-		limit = last + 1;
-	ret = ft_is_small_sim(tab, limit);
+	if (limit1 > last)
+		limit1 = last + 1;
+	ret = ft_is_small_sim(tab, limit1);
 	i = last;
 	j = last;
-	if (limit > last)
-		limit = last + 1;
-	while (i != last - limit && i != 0)
+	if (limit2 > last)
+		limit2 = last + 1;
+	while (i != last - limit2 && i != 0)
 	{
 		if (tab[i] < tab[j])
 			j = i;
