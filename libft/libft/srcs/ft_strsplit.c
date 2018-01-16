@@ -6,7 +6,7 @@
 /*   By: pnardozi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:02:31 by pnardozi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:19:36 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/16 16:13:14 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char		**ft_strsplit(char const *s, char c)
 {
 	int		nb_word;
 	int		*size_word;
-	char		**tab;
+	char	**tab;
 	int		i;
 
 	i = 0;

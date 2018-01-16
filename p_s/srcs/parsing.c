@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/16 14:53:22 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/16 16:37:49 by pnardozi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int		ft_double(int *tab, int end, int ac)
@@ -18,7 +30,7 @@ static int		ft_double(int *tab, int end, int ac)
 int			ft_parsing_int(int ac, char **av, int *tab, int i)
 {
 	long long	*tmp;
-	int		j;
+	int			j;
 
 	if (!(tmp = malloc(sizeof(*tmp) * ac)))
 		return (0);

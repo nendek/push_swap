@@ -6,13 +6,13 @@
 #    By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/19 14:34:26 by pnardozi          #+#    #+#              #
-#    Updated: 2018/01/13 18:58:14 by pnardozi         ###   ########.fr        #
+#    Updated: 2018/01/16 16:23:17 by pnardozi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS =  -g3 -Wall -Werror -Wextra
 
 CHECKER = checker
 
@@ -41,6 +41,7 @@ PUSH_SWAP_SRCS_NAME =	push_swap.c \
 			algo_big2.c \
 			simulation_big.c \
 			simulation_big2.c \
+			simu.c \
 			cmd.c \
 			cmd_list.c \
 			cmd_list2.c \

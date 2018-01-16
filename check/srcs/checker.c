@@ -6,13 +6,13 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:09:46 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/16 14:18:51 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/16 14:31:02 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static char	**recovery(char **av, int ac, int *length, int *i)
+static char		**recovery(char **av, int ac, int *length, int *i)
 {
 	if (ac == 2)
 	{
@@ -23,7 +23,7 @@ static char	**recovery(char **av, int ac, int *length, int *i)
 	else
 	{
 		*length = ac - 1;
-		*i  = 1;
+		*i = 1;
 		return (av);
 	}
 }

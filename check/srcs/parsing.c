@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/16 14:31:12 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/16 14:31:33 by pnardozi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
 static int		ft_double(int *tab, int end, int ac)
@@ -15,7 +27,7 @@ static int		ft_double(int *tab, int end, int ac)
 	return (1);
 }
 
-int			ft_parsing_int(int ac, char **av, int *tab, int i)
+int				ft_parsing_int(int ac, char **av, int *tab, int i)
 {
 	long long		*tmp;
 	int				j;

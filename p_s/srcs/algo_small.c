@@ -6,13 +6,13 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 10:47:36 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/12 11:30:52 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/16 14:48:59 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_search_small_for_small(int *tab, int last)
+int				ft_search_small_for_small(int *tab, int last)
 {
 	int i;
 	int j;
@@ -28,17 +28,19 @@ int		ft_search_small_for_small(int *tab, int last)
 	return (j);
 }
 
-static void	ft_place_ra(int *tab, t_nbr *nbr, t_cmd_list **cmd, int p)
+static void		ft_place_ra(int *tab, t_nbr *nbr, t_cmd_list **cmd, int p)
 {
-	if (tab[nbr->last_a] > tab[nbr->last_a - 1] && nbr->last_a != nbr->pivot_a && nbr->last_a - 1 != nbr->pivot_a && (p == 2 || p == 3))
+	if (tab[nbr->last_a] > tab[nbr->last_a - 1] && nbr->last_a != nbr->pivot_a\
+			&& nbr->last_a - 1 != nbr->pivot_a && (p == 2 || p == 3))
 		ft_sa_list(tab, nbr->last_a, cmd);
 	ft_ra_list(tab, nbr->last_a, cmd);
 	nbr->pivot_a++;
 }
 
-static void	ft_place_rra(int *tab, t_nbr *nbr, t_cmd_list **cmd, int p)
+static void		ft_place_rra(int *tab, t_nbr *nbr, t_cmd_list **cmd, int p)
 {
-	if (tab[nbr->last_a] > tab[nbr->last_a - 1] && nbr->last_a != nbr->pivot_a && nbr->last_a - 1 != nbr->pivot_a && (p == 2 || p == 3))
+	if (tab[nbr->last_a] > tab[nbr->last_a - 1] && nbr->last_a != nbr->pivot_a\
+			&& nbr->last_a - 1 != nbr->pivot_a && (p == 2 || p == 3))
 		ft_sa_list(tab, nbr->last_a, cmd);
 	ft_rra_list(tab, nbr->last_a, cmd);
 	nbr->pivot_a--;
@@ -46,11 +48,12 @@ static void	ft_place_rra(int *tab, t_nbr *nbr, t_cmd_list **cmd, int p)
 		nbr->pivot_a = nbr->last_a;
 }
 
-int		ft_sort_small(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
+int				ft_sort_small(t_pile tab, t_nbr nbr, t_cmd_list **cmd, int p)
 {
 	while (!(ft_is_sort(tab.pile_a, nbr.last_a)))
 	{
-		if (tab.pile_a[nbr.last_a] > tab.pile_a[nbr.last_a - 1] && (p == 1 || p == 2))
+		if (tab.pile_a[nbr.last_a] > tab.pile_a[nbr.last_a - 1]\
+				&& (p == 1 || p == 2))
 			ft_sa_list(tab.pile_a, nbr.last_a, cmd);
 		nbr.pivot_a = ft_search_small_for_small(tab.pile_a, nbr.last_a);
 		if (nbr.pivot_a >= nbr.last_a / 2)

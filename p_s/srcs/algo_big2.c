@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo_big2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/16 14:43:20 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/16 14:46:09 by pnardozi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_is_small(int *tab, int last)
+static int		ft_is_small(int *tab, int last)
 {
 	int i;
 	int tmp;
@@ -17,12 +28,12 @@ static int	ft_is_small(int *tab, int last)
 	return (tmp);
 }
 
-int		ft_search_small_for_big(int *tab, t_nbr nbr)
+int				ft_search_small_for_big(int *tab, t_nbr nbr)
 {
 	int i;
 	int j;
 	int ret;
-	int limit = 0;
+	int limit;
 
 	limit = nbr.limit1;
 	if (limit > nbr.last_a)
@@ -40,20 +51,21 @@ int		ft_search_small_for_big(int *tab, t_nbr nbr)
 		i--;
 	}
 	if (tab[ret] > tab[j])
-		ret = j;	
+		ret = j;
 	return (ret);
 }
 
-static	void	ft_find_pile_b_pos2(t_pile tab, t_nbr nbr, int *i, int *j)
+static void		ft_find_pile_b_pos2(t_pile tab, t_nbr nbr, int *i, int *j)
 {
 	if (*j > -1)
 	{
 		while (*i != nbr.last_b + 1)
 		{
-			if (tab.pile_b[*i] < tab.pile_a[nbr.pivot_a] && tab.pile_b[*j] < tab.pile_b[*i])
+			if (tab.pile_b[*i] < tab.pile_a[nbr.pivot_a] && \
+					tab.pile_b[*j] < tab.pile_b[*i])
 				*j = *i;
 			*i += 1;
-		}	
+		}
 	}
 	else
 	{
@@ -68,7 +80,7 @@ static	void	ft_find_pile_b_pos2(t_pile tab, t_nbr nbr, int *i, int *j)
 	}
 }
 
-int 	ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int *meaning)
+int				ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int *meaning)
 {
 	int i;
 	int j;
@@ -80,7 +92,7 @@ int 	ft_find_pile_b_pos(t_pile tab, t_nbr nbr, int *meaning)
 		if (tab.pile_b[i] < tab.pile_a[nbr.pivot_a])
 		{
 			j = i;
-			break;
+			break ;
 		}
 		i++;
 	}

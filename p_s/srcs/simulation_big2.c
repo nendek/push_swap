@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulation_big2.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/16 14:57:57 by pnardozi          #+#    #+#             */
+/*   Updated: 2018/01/16 15:00:50 by pnardozi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_is_small_sim(int *tab, int last)
+static int		ft_is_small_sim(int *tab, int last)
 {
 	int i;
 	int tmp;
@@ -17,7 +28,8 @@ static int	ft_is_small_sim(int *tab, int last)
 	return (tmp);
 }
 
-int		ft_search_small_for_big_sim(int *tab, int last, int limit1, int limit2)
+int				ft_search_small_for_big_sim(int *tab, int last, int limit1,\
+		int limit2)
 {
 	int i;
 	int j;
@@ -37,7 +49,7 @@ int		ft_search_small_for_big_sim(int *tab, int last, int limit1, int limit2)
 		i--;
 	}
 	if (tab[ret] > tab[j])
-		ret = j;	
+		ret = j;
 	return (ret);
 }
 
@@ -47,10 +59,11 @@ static	void	ft_find_pile_b_pos2_sim(t_pile tab, t_nbr nbr, int *i, int *j)
 	{
 		while (*i != nbr.last_b + 1)
 		{
-			if (tab.pile_b[*i] < tab.pile_a[nbr.pivot_a] && tab.pile_b[*j] < tab.pile_b[*i])
+			if (tab.pile_b[*i] < tab.pile_a[nbr.pivot_a] &&\
+					tab.pile_b[*j] < tab.pile_b[*i])
 				*j = *i;
 			*i += 1;
-		}	
+		}
 	}
 	else
 	{
@@ -65,7 +78,7 @@ static	void	ft_find_pile_b_pos2_sim(t_pile tab, t_nbr nbr, int *i, int *j)
 	}
 }
 
-int 	ft_find_pile_b_pos_sim(t_pile tab, t_nbr nbr, int *meaning)
+int				ft_find_pile_b_pos_sim(t_pile tab, t_nbr nbr, int *meaning)
 {
 	int i;
 	int j;
@@ -77,7 +90,7 @@ int 	ft_find_pile_b_pos_sim(t_pile tab, t_nbr nbr, int *meaning)
 		if (tab.pile_b[i] < tab.pile_a[nbr.pivot_a])
 		{
 			j = i;
-			break;
+			break ;
 		}
 		i++;
 	}
