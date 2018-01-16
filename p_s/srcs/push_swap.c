@@ -62,6 +62,31 @@ static char	**recovery(char **av, int ac, int *length, int *i)
 	}
 }
 
+void		ft_simulate(t_pile tab, t_nbr nbr)
+{
+	int tmp;
+	int sol;
+	t_nbr sim;
+
+	sim = nbr;
+	sim.coups = 0;
+	sim.limit1 = 5;
+	tmp = ft_sort_big_sim(tab, sim);
+	while (sim.limit1 != 30)
+	{
+		ft_printf("nbr.coup = %d\n", sim.coups);
+		sim.coups = ft_sort_big_sim(tab, sim);
+		if (sim.coups < tmp)
+		{
+			tmp = sim.coups;
+			sol = sim.limit1;
+		}
+		sim.limit1++;
+	}
+	ft_printf("sol = %d", sol);
+	sim.limit1 = sol;
+}
+
 static void	ft_sort(t_pile tab, t_nbr nbr, int *tmp)
 {
 	t_solution 	sol;
@@ -83,6 +108,7 @@ static void	ft_sort(t_pile tab, t_nbr nbr, int *tmp)
 	}
 	else
 	{
+		ft_simulate(tab, nbr);
 		ft_sort_big(tab, nbr, &sol.tab[p]);
 		ft_put_list(sol.tab[p]);
 	}

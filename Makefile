@@ -39,9 +39,13 @@ PUSH_SWAP_SRCS_NAME =	push_swap.c \
 			algo_small.c \
 			algo_big.c \
 			algo_big2.c \
+			simulation_big.c \
+			simulation_big2.c \
 			cmd.c \
 			cmd_list.c \
 			cmd_list2.c \
+			cmd_sim.c \
+			cmd_sim2.c \
 			list.c \
 			parsing.c
 
