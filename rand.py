@@ -1,6 +1,6 @@
 import random
 # Change nums to run tests of "nums" length
-nums = 20
+nums = 5 
 a = range(-10000, 10000)
 for i in xrange(nums):
 	b = a[random.randint(0, len(a)-i)]

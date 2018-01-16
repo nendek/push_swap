@@ -15,13 +15,11 @@ static int		ft_double(int *tab, int end, int ac)
 	return (1);
 }
 
-int			ft_parsing_int(int ac, char **av, int *tab)
+int			ft_parsing_int(int ac, char **av, int *tab, int i)
 {
 	long long		*tmp;
-	int				i;
 	int				j;
 
-	i = 1;
 	if (!(tmp = malloc(sizeof(*tmp) * ac)))
 		return (0);
 	while (av[i])
