@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:31:12 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/16 14:31:33 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/17 18:37:33 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,56 @@ static int		ft_double(int *tab, int end, int ac)
 	return (1);
 }
 
+static void		ft_del_av(char **av)
+{
+	int i;
+
+	i = 0;
+	while (av[i])
+	{
+		free(av[i]);
+		i++;
+	}
+	free(av);
+}
+
+static int		ft_check(char **av, int *i, int *j)
+{
+	*j = 0;
+	(av[*i][*j] == '-') ? *j += 1 : 0;
+	while (av[*i][*j] != '\0')
+	{
+		if (ft_isdigit(av[*i][*j]) == 0)
+			return (0);
+		*j += 1;
+	}
+	return (1);
+}
+
 int				ft_parsing_int(int ac, char **av, int *tab, int i)
 {
-	long long		*tmp;
-	int				j;
+	long long	*tmp;
+	int			j;
+	int			tmp2;
+	int			k;
 
-	if (!(tmp = malloc(sizeof(*tmp) * ac)))
+	k = 0;
+	tmp2 = i;
+	if (!(tmp = malloc(sizeof(tmp) * ac)))
 		return (0);
 	while (av[i])
 	{
-		j = 0;
-		if (av[i][j] == '-')
-			j++;
-		while (av[i][j] != '\0')
-			if (ft_isdigit(av[i][j++]) == 0)
-				return (0);
-		tmp[i] = ft_long_atoi(av[i]);
-		if (tmp[i] > 2147483647 || tmp[i] < -2147483648)
+		if (ft_check(av, &i, &j) == 0)
 			return (0);
-		tab[--ac] = (int)tmp[i];
+		tmp[k] = ft_long_atoi(av[i]);
+		if (tmp[k] > 2147483647 || tmp[k] < -2147483648)
+			return (0);
+		tab[--ac] = (int)tmp[k++];
 		if (ft_double(tab, i, ac) == 0)
 			return (0);
 		i++;
 	}
+	(tmp2 == 0) ? ft_del_av(av) : 0;
 	free(tmp);
 	return (1);
 }

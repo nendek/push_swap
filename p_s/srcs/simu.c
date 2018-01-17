@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 15:03:59 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/17 14:31:26 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/17 18:26:40 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static void		simu(t_nbr *nbr, t_pile tab, int *tmp_tab)
 	int		tmp2;
 
 	sim = *nbr;
-	sim.limit1 = 1;
-	sim.limit2 = 1;
+	(nbr->last_a <= 300) ? (sim.limit1 = 1) : 0;
+	(nbr->last_a <= 300) ? (sim.limit2 = 1) : 0;
+	(nbr->last_a > 300) ? (sim.limit1 = 5) : 0;
+	(nbr->last_a > 300) ? (sim.limit2 = 5) : 0;
 	tmp2 = ft_sort_big_sim(tab, sim);
 	while (sim.limit1++ != 25)
 	{
