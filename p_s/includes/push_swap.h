@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:01:39 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/16 17:20:16 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:25:24 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct			s_cmd_list
 
 typedef struct			s_solution
 {
-	t_cmd_list			*tab[NB_SOL - 1];
+	t_cmd_list			*tab[NB_SOL];
 }						t_solution;
 
 typedef struct			s_nbr
@@ -68,7 +68,9 @@ int						ft_sort_small(t_pile tab, t_nbr nbr,\
 		t_cmd_list **cmd, int p);
 
 void					ft_cpy_tab_int(int *dest, int *srcs, int end);
+void					ft_init(t_solution *sol);
 void					ft_list_clear(t_cmd_list **begin_list);
+void					ft_list_clear_all(t_solution *sol);
 void					ft_pushback_cmd(t_cmd_list **beginlist, char *cmd);
 int						ft_parsing_int(int ac, char **av, int *tab, int i);
 int						ft_lentgh_list(t_cmd_list *list);

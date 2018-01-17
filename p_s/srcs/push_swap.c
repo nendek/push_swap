@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 10:50:11 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/16 18:24:50 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:43:41 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			ft_cpy_tab_int(int *dest, int *srcs, int end)
 	int i;
 
 	i = 0;
-	while (i <= end + 1)
+	while (i <= end)
 	{
 		dest[i] = srcs[i];
 		i++;
@@ -68,18 +68,18 @@ static void		ft_sort(t_pile tab, t_nbr nbr, int *tmp)
 	int			p;
 
 	p = 0;
-	sol.tab[p] = NULL;
+	ft_init(&sol);
 	ft_cpy_tab_int(tmp, tab.pile_a, nbr.last_a);
 	if (nbr.last_a <= 15)
 	{
 		while (p < NB_SOL)
 		{
 			ft_cpy_tab_int(tab.pile_a, tmp, nbr.last_a);
-			sol.tab[p] = NULL;
 			ft_sort_small(tab, nbr, &sol.tab[p], p);
 			p++;
 		}
 		ft_put_small_result(&sol, NB_SOL);
+		ft_list_clear_all(&sol);
 	}
 	else
 	{
@@ -114,8 +114,8 @@ int				main(int argc, char **argv)
 	nbr.last_a = length - 1;
 	nbr.last_b = -1;
 	ft_sort(tab, nbr, tmp);
-	free (tmp);
-	free (tab.pile_a);
-	free (tab.pile_b);
+	free(tmp);
+	free(tab.pile_a);
+	free(tab.pile_b);
 	return (0);
 }

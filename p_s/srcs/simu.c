@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 15:03:59 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/16 19:08:49 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/17 14:31:26 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int				ft_simulate(t_pile tab, t_nbr *nbr)
 		return (0);
 	ft_cpy_tab_int(tmp_tab, tab.pile_a, nbr->last_a);
 	simu(nbr, tab, tmp_tab);
-	free (tmp_tab);
+	free(tmp_tab);
 	return (1);
 }
