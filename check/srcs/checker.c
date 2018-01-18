@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 13:09:46 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/16 14:31:02 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/18 15:29:10 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ int				main(int argc, char **argv)
 	char	**av;
 	int		i;
 
+	if (argc == 1)
+		return (0);
 	av = recovery(argv, argc, &length, &i);
 	if (!(tab_a = malloc(sizeof(int) * length)))
 		return (0);
 	if (!(tab_b = malloc(sizeof(int) * length)))
 		return (0);
-	if (ft_parsing_int(length, av, tab_a, i) == 0 || length < 2)
+	if (ft_parsing_int(length, av, tab_a, i) == 0)
 	{
 		ft_printf("Error\n");
 		return (0);
