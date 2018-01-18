@@ -46,16 +46,23 @@ static int		ft_check(char **av, int *i, int *j)
 	(av[*i][*j] == '-') ? *j += 1 : 0;
 	while (av[*i][*j] != '\0')
 	{
-		if (ft_isdigit(av[*i][*j]) == 0)
+		if (ft_isdigit(av[*i][*j]) == 0 || *j >= 18)
 			return (0);
 		*j += 1;
 	}
 	return (1);
 }
 
+static void		ft_error(long long *tmp)
+{
+	free(tmp);
+	ft_printf("Error\n");
+	exit(EXIT_FAILURE);
+}
+
 int				ft_parsing_int(int ac, char **av, int *tab, int i)
 {
-	long long	*tmp;
+	long long		*tmp;
 	int			j;
 	int			tmp2;
 	int			k;
@@ -63,17 +70,17 @@ int				ft_parsing_int(int ac, char **av, int *tab, int i)
 	k = 0;
 	tmp2 = i;
 	if (!(tmp = malloc(sizeof(tmp) * ac)))
-		return (0);
+		exit(EXIT_FAILURE);
 	while (av[i])
 	{
 		if (ft_check(av, &i, &j) == 0)
-			return (0);
+			ft_error(tmp);
 		tmp[k] = ft_long_atoi(av[i]);
 		if (tmp[k] > 2147483647 || tmp[k] < -2147483648)
-			return (0);
+			ft_error(tmp);
 		tab[--ac] = (int)tmp[k++];
 		if (ft_double(tab, i, ac) == 0)
-			return (0);
+			ft_error(tmp);
 		i++;
 	}
 	(tmp2 == 0) ? ft_del_av(av) : 0;
