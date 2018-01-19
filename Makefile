@@ -12,7 +12,7 @@
 
 CC = gcc
 
-CFLAGS =  -g3 -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 CHECKER = checker
 
