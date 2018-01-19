@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 10:50:11 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/18 15:30:14 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/19 11:21:50 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,7 @@ int				main(int argc, char **argv)
 		return (0);
 	if (!(tab.pile_b = malloc(sizeof(int) * length)))
 		return (0);
-	if (ft_parsing_int(length, av, tab.pile_a, nbr.limit1) == 0)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
+	ft_parsing_int(length, av, tab.pile_a, nbr.limit1);
 	nbr.last_a = length - 1;
 	nbr.last_b = -1;
 	ft_sort(tab, nbr, tmp);
