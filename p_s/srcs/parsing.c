@@ -6,7 +6,7 @@
 /*   By: pnardozi <pnardozi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:53:22 by pnardozi          #+#    #+#             */
-/*   Updated: 2018/01/17 17:52:36 by pnardozi         ###   ########.fr       */
+/*   Updated: 2018/01/23 10:36:08 by pnardozi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static void		ft_error(long long *tmp)
 int				ft_parsing_int(int ac, char **av, int *tab, int i)
 {
 	long long		*tmp;
-	int			j;
-	int			tmp2;
-	int			k;
+	int				j;
+	int				tmp2;
+	int				k;
 
 	k = 0;
 	tmp2 = i;
